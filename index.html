@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreePlayGame | Premium HTML5 Arcade</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>FreePlayGame | Premium HTML5 Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
     
     <!-- AdBlueMedia Content Locker -->
     <script type="text/javascript">
@@ -13,73 +13,138 @@
     <script src="https://d18k3i06xdslhs.cloudfront.net/5b127a7.js"></script>
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: #0f172a; color: #fff; overflow: hidden; display: flex; flex-direction: column; height: 100vh; }
-        
-        /* Navbar */
-        header { background: #1e293b; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 10; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #38bdf8; text-decoration: none; }
-        .status { font-size: 0.9rem; background: #334155; padding: 5px 15px; border-radius: 20px; display: flex; align-items: center; gap: 8px; }
-        .pulse { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; animation: pulse 2s infinite; }
-        
-        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body { background: #0f172a; color: #f8fafc; overflow-x: hidden; }
 
-        /* Game Container (The Real Value) */
-        .game-container { flex: 1; position: relative; width: 100%; height: 100%; }
+        /* Navbar Poki-Style tapi Premium Dark */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1e293b; border-bottom: 2px solid #3b82f6; position: sticky; top: 0; z-index: 50; }
+        .logo { font-size: 1.8rem; font-weight: 900; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #3b82f6; }
+        .search-bar { background: #0f172a; border: 1px solid #334155; padding: 10px 20px; border-radius: 20px; width: 300px; color: white; outline: none; }
+        
+        /* Grid Layout Katalog Game */
+        .container { padding: 40px 5%; }
+        .section-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        
+        .game-card { background: #1e293b; border-radius: 16px; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; border: 2px solid transparent; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .game-card:hover { transform: translateY(-5px) scale(1.02); border-color: #3b82f6; box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3); }
+        .game-thumb { width: 100%; height: 200px; object-fit: cover; }
+        .game-info { padding: 15px; text-align: center; font-weight: 700; font-size: 1.1rem; }
+        .badge-hot { position: absolute; top: 10px; left: 10px; background: #ef4444; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: 800; }
+
+        /* Theater Mode (Tempat Game Dimainkan) */
+        #theater-mode { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; z-index: 100; flex-direction: column; }
+        .theater-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: #1e293b; border-bottom: 1px solid #334155; }
+        .btn-close { background: #ef4444; color: white; border: none; padding: 8px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .iframe-container { flex: 1; width: 100%; position: relative; }
         iframe { width: 100%; height: 100%; border: none; }
 
-        /* Paywall Overlay (The Locker Trigger) */
-        #paywall-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px); z-index: 100; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        .paywall-box { background: #1e293b; padding: 40px; border-radius: 16px; border: 1px solid #38bdf8; max-width: 500px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        .paywall-box h2 { font-size: 2rem; margin-bottom: 15px; color: #f8fafc; }
-        .paywall-box p { color: #94a3b8; margin-bottom: 30px; line-height: 1.6; }
-        .btn-unlock { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; font-size: 1.1rem; font-weight: 800; border-radius: 8px; cursor: pointer; transition: 0.3s; width: 100%; }
-        .btn-unlock:hover { background: #0284c7; color: white; transform: translateY(-2px); }
+        /* Paywall Interruption */
+        #paywall-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); z-index: 200; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .paywall-box { background: #1e293b; padding: 50px; border-radius: 24px; border: 2px solid #3b82f6; max-width: 550px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+        .paywall-box h2 { font-size: 2.5rem; margin-bottom: 15px; color: #fff; }
+        .paywall-box p { color: #94a3b8; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6; }
+        .btn-unlock { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; padding: 18px 40px; font-size: 1.2rem; font-weight: 800; border-radius: 12px; cursor: pointer; transition: 0.3s; width: 100%; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4); }
+        .btn-unlock:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(59, 130, 246, 0.6); }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo">FreePlayGame.online</a>
-        <div class="status">
-            <div class="pulse"></div>
-            <span>Guest Session Active</span>
-        </div>
-    </header>
+    <nav>
+        <a href="#" class="logo">🎮 FreePlayGame<span>.online</span></a>
+        <input type="text" class="search-bar" placeholder="Search 10,000+ games...">
+    </nav>
 
-    <div class="game-container">
-        <!-- Game Asli Menggunakan Iframe dari penyedia game gratis -->
-        <!-- Contoh di bawah memuat game 2048, Anda bisa menggantinya dengan link game HTML5 lainnya -->
-        <iframe src="https://play2048.co/" id="active-game" title="Web Game"></iframe>
-        
-        <!-- Paywall yang akan muncul menutupi game -->
-        <div id="paywall-overlay">
-            <div class="paywall-box">
-                <h2>⏸ Game Paused</h2>
-                <p>Your free trial session has ended. To continue playing this game and unlock all premium features, please complete a quick sponsor verification.</p>
-                <button class="btn-unlock" onclick="triggerLocker()">Unlock Unlimited Access</button>
+    <div class="container">
+        <div class="section-title">🔥 Trending Right Now</div>
+        <div class="game-grid">
+            
+            <!-- Game 1: Tautan Embed Resmi dari GameDistribution yang 100% jalan di iframe -->
+            <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/f2af2ecc05aa4dbca0914e6e6962a4d3/')">
+                <div class="badge-hot">#1 PLAYED</div>
+                <!-- Thumbnail Asli -->
+                <img src="https://img.gamedistribution.com/f2af2ecc05aa4dbca0914e6e6962a4d3-512x512.jpeg" class="game-thumb" alt="Fireboy Watergirl">
+                <div class="game-info">Fireboy & Watergirl</div>
+            </div>
+
+            <!-- Game 2: Tautan Embed Resmi dari GameDistribution -->
+            <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/c6ba8dfac11648a8bcc3f93ce0d249f0/')">
+                <img src="https://img.gamedistribution.com/c6ba8dfac11648a8bcc3f93ce0d249f0-512x512.jpeg" class="game-thumb" alt="Moto X3M">
+                <div class="game-info">Moto X3M Bike Race</div>
+            </div>
+
+            <!-- Game 3: Template untuk link game Anda sendiri (misal Subway Surfers jika ada embed-nya) -->
+            <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/26bdce5358044738bbd44b553641b44b/')">
+                <img src="https://img.gamedistribution.com/26bdce5358044738bbd44b553641b44b-512x512.jpeg" class="game-thumb" alt="Subway Surfers Format">
+                <div class="game-info">Skate Hooligans</div>
+            </div>
+
+            <!-- Game 4 -->
+            <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/rvvASMiM/')">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500" class="game-thumb" alt="Retro">
+                <div class="game-info">Retro Neon Rush</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Theater Mode (Tersembunyi di awal) -->
+    <div id="theater-mode">
+        <div class="theater-header">
+            <div style="font-weight: 800; font-size: 1.2rem; color: #3b82f6;">FreePlayGame Arcade</div>
+            <button class="btn-close" onclick="closeGame()">Exit Game</button>
+        </div>
+        <div class="iframe-container">
+            <!-- Iframe kosong, URL akan diisi oleh JavaScript saat game diklik -->
+            <iframe id="game-frame" src=""></iframe>
+            
+            <!-- Paywall Overlay -->
+            <div id="paywall-overlay">
+                <div class="paywall-box">
+                    <h2>⏳ Guest Time Expired</h2>
+                    <p>You've played as a Guest for 2 minutes. To keep your progress and continue playing completely free, please complete a quick human verification.</p>
+                    <button class="btn-unlock" onclick="startVerification()">Verify & Continue Playing</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Waktu bermain gratis sebelum game dikunci (dalam milidetik)
-        // 120000 ms = 2 Menit. 
-        const FREE_PLAY_TIME = 120000; 
+        let gameTimer;
+        const FREE_PLAY_TIME = 120000; // 2 Menit dalam milidetik (ubah ke 60000 untuk 1 menit)
 
-        setTimeout(() => {
-            // Meredupkan game dan memunculkan Paywall
-            document.getElementById('paywall-overlay').style.display = 'flex';
-            // Menonaktifkan interaksi pada game di belakangnya
-            document.getElementById('active-game').style.pointerEvents = 'none'; 
-        }, FREE_PLAY_TIME);
+        function openGame(gameUrl) {
+            // 1. Tampilkan mode theater
+            document.getElementById('theater-mode').style.display = 'flex';
+            
+            // 2. Masukkan URL game ke iframe (Pastikan URL diizinkan untuk iframe)
+            document.getElementById('game-frame').src = gameUrl;
+            
+            // 3. Sembunyikan paywall jika sebelumnya terbuka
+            document.getElementById('paywall-overlay').style.display = 'none';
+            document.getElementById('game-frame').style.pointerEvents = 'auto';
 
-        function triggerLocker() {
-            // Memanggil Locker AdBlueMedia
+            // 4. Mulai Timer Jebakan
+            gameTimer = setTimeout(() => {
+                document.getElementById('paywall-overlay').style.display = 'flex';
+                document.getElementById('game-frame').style.pointerEvents = 'none';
+            }, FREE_PLAY_TIME);
+        }
+
+        function closeGame() {
+            // Tutup theater dan bersihkan iframe & timer agar tidak bocor
+            document.getElementById('theater-mode').style.display = 'none';
+            document.getElementById('game-frame').src = '';
+            clearTimeout(gameTimer);
+        }
+
+        function startVerification() {
+            // Panggil Content Locker AdBlueMedia
             if(typeof _TR === 'function') {
                 _TR();
             } else {
-                alert("Please disable your AdBlocker to continue.");
+                alert("AdBlocker terdeteksi. Matikan untuk memverifikasi.");
             }
         }
     </script>
