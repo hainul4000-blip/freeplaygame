@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreePlayGame™ | Next-Gen Cloud Gaming</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>FreePlayGame | Premium HTML5 Arcade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     
     <!-- AdBlueMedia Content Locker -->
     <script type="text/javascript">
@@ -15,192 +13,74 @@
     <script src="https://d18k3i06xdslhs.cloudfront.net/5b127a7.js"></script>
 
     <style>
-        :root {
-            --bg-dark: #050505;
-            --bg-panel: #111111;
-            --primary: #3b82f6; /* Profesional Blue */
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --border: #222222;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--bg-dark); color: var(--text-main); -webkit-font-smoothing: antialiased; }
-
-        /* Top Bar Server Status */
-        .top-bar { background: var(--bg-panel); border-bottom: 1px solid var(--border); padding: 8px 5%; display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .server-status { display: flex; align-items: center; gap: 8px; }
-        .ping-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
-
-        /* Navbar */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid var(--border); background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 50; }
-        .logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--text-main); letter-spacing: -0.5px; }
-        .auth-btn { background: var(--text-main); color: var(--bg-dark); padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
-
-        /* Hero Section */
-        .hero { padding: 80px 5% 40px; text-align: center; max-width: 800px; margin: 0 auto; }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
-
-        /* Game Grid */
-        .container { padding: 0 5% 80px; max-width: 1400px; margin: 0 auto; }
-        .section-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #0f172a; color: #fff; overflow: hidden; display: flex; flex-direction: column; height: 100vh; }
         
-        .card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; position: relative; cursor: pointer; }
-        .card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1); }
-        .card-img { width: 100%; height: 180px; object-fit: cover; background: #222; }
-        .card-content { padding: 20px; }
-        .card-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
-        .card-tags { display: flex; gap: 8px; margin-bottom: 15px; }
-        .tag { background: #222; color: #ccc; font-size: 0.7rem; padding: 4px 10px; border-radius: 12px; font-weight: 600; }
-        .btn-play { width: 100%; background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; }
-        .btn-play:hover { background: #2563eb; }
+        /* Navbar */
+        header { background: #1e293b; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 10; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #38bdf8; text-decoration: none; }
+        .status { font-size: 0.9rem; background: #334155; padding: 5px 15px; border-radius: 20px; display: flex; align-items: center; gap: 8px; }
+        .pulse { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e; animation: pulse 2s infinite; }
+        
+        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(0.9); opacity: 0.7; } }
 
-        /* Legal Footer */
-        footer { border-top: 1px solid var(--border); padding: 40px 5%; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
-        .footer-links a { color: var(--text-muted); text-decoration: none; margin-left: 20px; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--text-main); }
+        /* Game Container (The Real Value) */
+        .game-container { flex: 1; position: relative; width: 100%; height: 100%; }
+        iframe { width: 100%; height: 100%; border: none; }
 
-        /* GDPR Cookie Banner */
-        .cookie-banner { position: fixed; bottom: 20px; left: 5%; right: 5%; max-width: 600px; background: #1a1a1a; border: 1px solid var(--border); padding: 20px; border-radius: 12px; z-index: 100; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .cookie-text { font-size: 0.85rem; color: #bbb; margin-right: 20px; }
-        .btn-cookie { background: #fff; color: #000; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-
-        /* Console Loading System (The Trap) */
-        #console-ui { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
-        .terminal { background: #0a0a0a; border: 1px solid #333; width: 90%; max-width: 500px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        .term-header { background: #111; padding: 12px 20px; font-size: 0.8rem; font-weight: 600; color: #888; border-bottom: 1px solid #333; display: flex; justify-content: space-between; }
-        .term-body { padding: 30px; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; }
-        .log-line { margin-bottom: 10px; color: #00ff00; opacity: 0; animation: fadeIn 0.1s forwards; }
-        .progress-track { width: 100%; height: 4px; background: #333; margin-top: 20px; border-radius: 2px; overflow: hidden; }
-        .progress-fill { height: 100%; width: 0%; background: var(--primary); transition: width 0.3s ease; }
-        @keyframes fadeIn { to { opacity: 1; } }
+        /* Paywall Overlay (The Locker Trigger) */
+        #paywall-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px); z-index: 100; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .paywall-box { background: #1e293b; padding: 40px; border-radius: 16px; border: 1px solid #38bdf8; max-width: 500px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .paywall-box h2 { font-size: 2rem; margin-bottom: 15px; color: #f8fafc; }
+        .paywall-box p { color: #94a3b8; margin-bottom: 30px; line-height: 1.6; }
+        .btn-unlock { background: #38bdf8; color: #0f172a; border: none; padding: 15px 30px; font-size: 1.1rem; font-weight: 800; border-radius: 8px; cursor: pointer; transition: 0.3s; width: 100%; }
+        .btn-unlock:hover { background: #0284c7; color: white; transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="server-status">
-            <div class="ping-dot"></div>
-            US-East Node: Online (Ping: 12ms)
+    <header>
+        <a href="#" class="logo">FreePlayGame.online</a>
+        <div class="status">
+            <div class="pulse"></div>
+            <span>Guest Session Active</span>
         </div>
-        <div>Active Sessions: 12,492</div>
-    </div>
+    </header>
 
-    <nav>
-        <a href="#" class="logo">FreePlayGame™</a>
-        <a href="#" class="auth-btn">Sign In</a>
-    </nav>
-
-    <div class="hero">
-        <h1>Cloud Gaming, Unchained.</h1>
-        <p>Stream AAA and premium web games directly in your browser with zero latency. Powered by distributed edge computing.</p>
-    </div>
-
-    <div class="container">
-        <div class="section-title">Trending on Edge Servers</div>
-        <div class="grid">
-            
-            <div class="card" onclick="initiateCloudSession('Roblox Edge Client')">
-                <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=800" class="card-img" alt="Game">
-                <div class="card-content">
-                    <div class="card-tags"><span class="tag">Multiplayer</span><span class="tag">4K Ready</span></div>
-                    <div class="card-title">Roblox Edge Client</div>
-                    <button class="btn-play">Launch Instance</button>
-                </div>
-            </div>
-
-            <div class="card" onclick="initiateCloudSession('Valorant Web Build')">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800" class="card-img" alt="Game">
-                <div class="card-content">
-                    <div class="card-tags"><span class="tag">FPS</span><span class="tag">60 FPS</span></div>
-                    <div class="card-title">Valorant Web Build</div>
-                    <button class="btn-play">Launch Instance</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- GDPR Banner -->
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-text">We use strictly necessary cookies to manage cloud gaming sessions and network traffic routing. By continuing, you agree to our Terms.</div>
-        <button class="btn-cookie" onclick="document.getElementById('cookieBanner').style.display='none'">Accept</button>
-    </div>
-
-    <!-- The Professional Loading Queue -->
-    <div id="console-ui">
-        <div class="terminal">
-            <div class="term-header">
-                <span>TERMINAL INSTANCE</span>
-                <span id="session-id">ID: FPG-992X</span>
-            </div>
-            <div class="term-body" id="term-logs">
-                <div class="progress-track"><div class="progress-fill" id="p-fill"></div></div>
+    <div class="game-container">
+        <!-- Game Asli Menggunakan Iframe dari penyedia game gratis -->
+        <!-- Contoh di bawah memuat game 2048, Anda bisa menggantinya dengan link game HTML5 lainnya -->
+        <iframe src="https://play2048.co/" id="active-game" title="Web Game"></iframe>
+        
+        <!-- Paywall yang akan muncul menutupi game -->
+        <div id="paywall-overlay">
+            <div class="paywall-box">
+                <h2>⏸ Game Paused</h2>
+                <p>Your free trial session has ended. To continue playing this game and unlock all premium features, please complete a quick sponsor verification.</p>
+                <button class="btn-unlock" onclick="triggerLocker()">Unlock Unlimited Access</button>
             </div>
         </div>
     </div>
-
-    <footer>
-        <div>&copy; 2026 FreePlayGame Cloud Infrastructure.</div>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">DMCA</a>
-        </div>
-    </footer>
 
     <script>
-        function initiateCloudSession(gameTarget) {
-            const consoleUI = document.getElementById('console-ui');
-            const termLogs = document.getElementById('term-logs');
-            const pFill = document.getElementById('p-fill');
-            
-            consoleUI.style.display = 'flex';
-            
-            const logs = [
-                `> Requesting instance for [${gameTarget}]...`,
-                "> Connecting to US-East Edge Server (104.21.XX.XX)...",
-                "> Handshake successful. Latency: 12ms",
-                "> Allocating GPU memory...",
-                "> WARNING: Server capacity at 98%. Placing user in queue.",
-                "> You are position #3 in queue.",
-                "> You are position #1 in queue."
-            ];
+        // Waktu bermain gratis sebelum game dikunci (dalam milidetik)
+        // 120000 ms = 2 Menit. 
+        const FREE_PLAY_TIME = 120000; 
 
-            let delay = 0;
-            
-            logs.forEach((log, index) => {
-                setTimeout(() => {
-                    const line = document.createElement('div');
-                    line.className = 'log-line';
-                    line.innerText = log;
-                    termLogs.insertBefore(line, termLogs.firstChild);
-                    
-                    pFill.style.width = ((index + 1) / logs.length) * 100 + '%';
+        setTimeout(() => {
+            // Meredupkan game dan memunculkan Paywall
+            document.getElementById('paywall-overlay').style.display = 'flex';
+            // Menonaktifkan interaksi pada game di belakangnya
+            document.getElementById('active-game').style.pointerEvents = 'none'; 
+        }, FREE_PLAY_TIME);
 
-                    // Trigger Locker at the end of the queue
-                    if (index === logs.length - 1) {
-                        setTimeout(() => {
-                            const errorLine = document.createElement('div');
-                            errorLine.className = 'log-line';
-                            errorLine.style.color = '#ef4444';
-                            errorLine.style.fontWeight = 'bold';
-                            errorLine.innerText = "> SYSTEM HALT: Bot traffic suspected. Please complete Human Verification to launch game.";
-                            termLogs.insertBefore(errorLine, termLogs.firstChild);
-                            
-                            // AdBlueMedia Locker Trigger
-                            if(typeof _TR === 'function') { _TR(); } 
-                            else { alert("Locker not initialized. Check ad blocker."); }
-                        }, 1500);
-                    }
-                }, delay);
-                
-                // Variasikan waktu tunggu agar terlihat seperti proses nyata
-                delay += Math.floor(Math.random() * 800) + 600; 
-            });
+        function triggerLocker() {
+            // Memanggil Locker AdBlueMedia
+            if(typeof _TR === 'function') {
+                _TR();
+            } else {
+                alert("Please disable your AdBlocker to continue.");
+            }
         }
     </script>
 </body>
