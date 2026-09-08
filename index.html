@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreePlayGame | Premium Cloud Gaming Online</title>
-    <meta name="description" content="Play high-end premium games directly in your browser. No downloads, no lag.">
+    <title>FreePlayGame™ | Next-Gen Cloud Gaming</title>
     
-    <!-- Google Fonts for Professional Look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     
-    <!-- AdBlueMedia Locker Code -->
+    <!-- AdBlueMedia Content Locker -->
     <script type="text/javascript">
         var Ykijk_mAw_JsQhSc={"it":4628022,"key":"819a2"};
     </script>
@@ -17,179 +16,191 @@
 
     <style>
         :root {
-            --bg-main: #0B0E14;
-            --bg-card: #151A25;
-            --accent: #00FF66; /* Warna hijau neon ala gaming/Razer */
-            --text-main: #FFFFFF;
-            --text-muted: #8B949E;
+            --bg-dark: #050505;
+            --bg-panel: #111111;
+            --primary: #3b82f6; /* Profesional Blue */
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --border: #222222;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-main); -webkit-font-smoothing: antialiased; }
+
+        /* Top Bar Server Status */
+        .top-bar { background: var(--bg-panel); border-bottom: 1px solid var(--border); padding: 8px 5%; display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .server-status { display: flex; align-items: center; gap: 8px; }
+        .ping-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+
+        /* Navbar */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; border-bottom: 1px solid var(--border); background: rgba(5, 5, 5, 0.8); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 50; }
+        .logo { font-size: 1.5rem; font-weight: 800; text-decoration: none; color: var(--text-main); letter-spacing: -0.5px; }
+        .auth-btn { background: var(--text-main); color: var(--bg-dark); padding: 8px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+
+        /* Hero Section */
+        .hero { padding: 80px 5% 40px; text-align: center; max-width: 800px; margin: 0 auto; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; background: linear-gradient(to right, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
+
+        /* Game Grid */
+        .container { padding: 0 5% 80px; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
         
-        body { background-color: var(--bg-main); color: var(--text-main); overflow-x: hidden; }
+        .card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; position: relative; cursor: pointer; }
+        .card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 10px 40px rgba(59, 130, 246, 0.1); }
+        .card-img { width: 100%; height: 180px; object-fit: cover; background: #222; }
+        .card-content { padding: 20px; }
+        .card-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
+        .card-tags { display: flex; gap: 8px; margin-bottom: 15px; }
+        .tag { background: #222; color: #ccc; font-size: 0.7rem; padding: 4px 10px; border-radius: 12px; font-weight: 600; }
+        .btn-play { width: 100%; background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; }
+        .btn-play:hover { background: #2563eb; }
 
-        /* Navbar Profesional */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background-color: rgba(11, 14, 20, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1F2937; }
-        .logo { font-size: 24px; font-weight: 900; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
+        /* Legal Footer */
+        footer { border-top: 1px solid var(--border); padding: 40px 5%; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; margin-left: 20px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text-main); }
 
-        /* Hero Section (Featured Game) */
-        .hero { position: relative; height: 60vh; background: linear-gradient(to top, var(--bg-main), transparent), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop') center/cover; display: flex; align-items: flex-end; padding: 5%; }
-        .hero-content { max-width: 600px; z-index: 2; }
-        .badge { background: var(--accent); color: #000; padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
-        .hero h1 { font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 15px; }
-        .hero p { color: #ccc; margin-bottom: 25px; font-size: 1.1rem; }
+        /* GDPR Cookie Banner */
+        .cookie-banner { position: fixed; bottom: 20px; left: 5%; right: 5%; max-width: 600px; background: #1a1a1a; border: 1px solid var(--border); padding: 20px; border-radius: 12px; z-index: 100; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .cookie-text { font-size: 0.85rem; color: #bbb; margin-right: 20px; }
+        .btn-cookie { background: #fff; color: #000; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; }
 
-        .btn-play { background: var(--accent); color: #000; border: none; padding: 15px 35px; font-size: 1.2rem; font-weight: 800; border-radius: 8px; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 0 20px rgba(0, 255, 102, 0.3); }
-        .btn-play:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0, 255, 102, 0.5); }
-
-        /* Game Grid Layout */
-        .section-title { padding: 40px 5% 20px; font-size: 1.8rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
-        .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; padding: 0 5% 50px; }
-        
-        .game-card { background: var(--bg-card); border-radius: 12px; overflow: hidden; cursor: pointer; transition: 0.3s; border: 1px solid transparent; position: relative; }
-        .game-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0, 255, 102, 0.1); }
-        .game-thumb { width: 100%; height: 160px; object-fit: cover; }
-        .game-info { padding: 15px; }
-        .game-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; }
-        .game-meta { font-size: 0.85rem; color: var(--text-muted); display: flex; justify-content: space-between; }
-        
-        /* Fake Loading Screen (The Trap) */
-        #loading-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 14, 20, 0.98); z-index: 999; flex-direction: column; justify-content: center; align-items: center; }
-        .loader-box { width: 400px; max-width: 90%; text-align: center; }
-        .loader-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; }
-        .loader-status { color: var(--accent); margin-bottom: 20px; font-family: monospace; font-size: 1.1rem; }
-        .progress-bar-container { width: 100%; height: 10px; background: #1F2937; border-radius: 5px; overflow: hidden; margin-bottom: 20px; }
-        .progress-bar { width: 0%; height: 100%; background: var(--accent); transition: width 0.5s ease; }
-        .security-msg { font-size: 0.9rem; color: var(--text-muted); }
-
-        /* Footer */
-        footer { text-align: center; padding: 30px; border-top: 1px solid #1F2937; color: var(--text-muted); font-size: 0.9rem; }
+        /* Console Loading System (The Trap) */
+        #console-ui { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 999; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .terminal { background: #0a0a0a; border: 1px solid #333; width: 90%; max-width: 500px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .term-header { background: #111; padding: 12px 20px; font-size: 0.8rem; font-weight: 600; color: #888; border-bottom: 1px solid #333; display: flex; justify-content: space-between; }
+        .term-body { padding: 30px; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; }
+        .log-line { margin-bottom: 10px; color: #00ff00; opacity: 0; animation: fadeIn 0.1s forwards; }
+        .progress-track { width: 100%; height: 4px; background: #333; margin-top: 20px; border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0%; background: var(--primary); transition: width 0.3s ease; }
+        @keyframes fadeIn { to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav>
-        <a href="#" class="logo">🎮 freeplaygame<span>.online</span></a>
-        <div class="nav-links">
-            <a href="#">Trending</a>
-            <a href="#">Multiplayer</a>
-            <a href="#">Action</a>
+    <div class="top-bar">
+        <div class="server-status">
+            <div class="ping-dot"></div>
+            US-East Node: Online (Ping: 12ms)
         </div>
+        <div>Active Sessions: 12,492</div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">FreePlayGame™</a>
+        <a href="#" class="auth-btn">Sign In</a>
     </nav>
 
-    <!-- Main Highlighted Game -->
     <div class="hero">
-        <div class="hero-content">
-            <div class="badge">🔥 #1 Trending Today</div>
-            <h1>ROBLOX: Cloud Edition</h1>
-            <p>Play the fully unblocked version of Roblox directly in your browser. Ultra-fast servers, zero latency. No downloads required.</p>
-            <button class="btn-play" onclick="startGame('Roblox Cloud')">▶ PLAY GAME NOW</button>
+        <h1>Cloud Gaming, Unchained.</h1>
+        <p>Stream AAA and premium web games directly in your browser with zero latency. Powered by distributed edge computing.</p>
+    </div>
+
+    <div class="container">
+        <div class="section-title">Trending on Edge Servers</div>
+        <div class="grid">
+            
+            <div class="card" onclick="initiateCloudSession('Roblox Edge Client')">
+                <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?w=800" class="card-img" alt="Game">
+                <div class="card-content">
+                    <div class="card-tags"><span class="tag">Multiplayer</span><span class="tag">4K Ready</span></div>
+                    <div class="card-title">Roblox Edge Client</div>
+                    <button class="btn-play">Launch Instance</button>
+                </div>
+            </div>
+
+            <div class="card" onclick="initiateCloudSession('Valorant Web Build')">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800" class="card-img" alt="Game">
+                <div class="card-content">
+                    <div class="card-tags"><span class="tag">FPS</span><span class="tag">60 FPS</span></div>
+                    <div class="card-title">Valorant Web Build</div>
+                    <button class="btn-play">Launch Instance</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- Game List -->
-    <div class="section-title">Popular Games</div>
-    <div class="games-grid">
-        
-        <!-- Game 1 -->
-        <div class="game-card" onclick="startGame('Minecraft Web Edition')">
-            <img src="https://images.unsplash.com/photo-1607853202273-797f1c22a38e?q=80&w=600&auto=format&fit=crop" class="game-thumb" alt="Game">
-            <div class="game-info">
-                <div class="game-title">Minecraft Web Edition</div>
-                <div class="game-meta"><span>Sandbox</span> <span>⭐ 4.9/5 (24k Players)</span></div>
-            </div>
-        </div>
-
-        <!-- Game 2 -->
-        <div class="game-card" onclick="startGame('Valorant 2D')">
-            <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600&auto=format&fit=crop" class="game-thumb" alt="Game">
-            <div class="game-info">
-                <div class="game-title">Valorant Mini</div>
-                <div class="game-meta"><span>Shooter</span> <span>⭐ 4.8/5 (18k Players)</span></div>
-            </div>
-        </div>
-
-        <!-- Game 3 -->
-        <div class="game-card" onclick="startGame('GTA V Mobile')">
-            <img src="https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=600&auto=format&fit=crop" class="game-thumb" alt="Game">
-            <div class="game-info">
-                <div class="game-title">GTA V Web Render</div>
-                <div class="game-meta"><span>Open World</span> <span>⭐ 4.7/5 (50k Players)</span></div>
-            </div>
-        </div>
-        
-        <!-- Game 4 -->
-        <div class="game-card" onclick="startGame('Geometry Dash Full')">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600&auto=format&fit=crop" class="game-thumb" alt="Game">
-            <div class="game-info">
-                <div class="game-title">Geometry Dash Full</div>
-                <div class="game-meta"><span>Arcade</span> <span>⭐ 4.9/5 (12k Players)</span></div>
-            </div>
-        </div>
-
+    <!-- GDPR Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-text">We use strictly necessary cookies to manage cloud gaming sessions and network traffic routing. By continuing, you agree to our Terms.</div>
+        <button class="btn-cookie" onclick="document.getElementById('cookieBanner').style.display='none'">Accept</button>
     </div>
 
-    <!-- The Loading Screen TRAP (Hidden by default) -->
-    <div id="loading-screen">
-        <div class="loader-box">
-            <div class="loader-title">Connecting to <span id="game-name">Server</span>...</div>
-            <div class="loader-status" id="loader-text">Initializing Engine...</div>
-            <div class="progress-bar-container">
-                <div class="progress-bar" id="progress-bar"></div>
+    <!-- The Professional Loading Queue -->
+    <div id="console-ui">
+        <div class="terminal">
+            <div class="term-header">
+                <span>TERMINAL INSTANCE</span>
+                <span id="session-id">ID: FPG-992X</span>
             </div>
-            <div class="security-msg">🛡️ Connection is secure and encrypted</div>
+            <div class="term-body" id="term-logs">
+                <div class="progress-track"><div class="progress-fill" id="p-fill"></div></div>
+            </div>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 freeplaygame.online. All Rights Reserved. Not affiliated with game developers.
+        <div>&copy; 2026 FreePlayGame Cloud Infrastructure.</div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">DMCA</a>
+        </div>
     </footer>
 
-    <!-- Logic Script for Psychological Hook & CPA Locker -->
     <script>
-        function startGame(gameName) {
-            // Tampilkan Layar Loading
-            document.getElementById('loading-screen').style.display = 'flex';
-            document.getElementById('game-name').innerText = gameName;
+        function initiateCloudSession(gameTarget) {
+            const consoleUI = document.getElementById('console-ui');
+            const termLogs = document.getElementById('term-logs');
+            const pFill = document.getElementById('p-fill');
             
-            let progressBar = document.getElementById('progress-bar');
-            let loaderText = document.getElementById('loader-text');
+            consoleUI.style.display = 'flex';
             
-            // Tahap 1 Loading
-            setTimeout(() => {
-                progressBar.style.width = '35%';
-                loaderText.innerText = 'Allocating Server Resources...';
-            }, 500);
+            const logs = [
+                `> Requesting instance for [${gameTarget}]...`,
+                "> Connecting to US-East Edge Server (104.21.XX.XX)...",
+                "> Handshake successful. Latency: 12ms",
+                "> Allocating GPU memory...",
+                "> WARNING: Server capacity at 98%. Placing user in queue.",
+                "> You are position #3 in queue.",
+                "> You are position #1 in queue."
+            ];
 
-            // Tahap 2 Loading
-            setTimeout(() => {
-                progressBar.style.width = '75%';
-                loaderText.innerText = 'Bypassing School/Work Network Restrictions...';
-            }, 1800);
+            let delay = 0;
+            
+            logs.forEach((log, index) => {
+                setTimeout(() => {
+                    const line = document.createElement('div');
+                    line.className = 'log-line';
+                    line.innerText = log;
+                    termLogs.insertBefore(line, termLogs.firstChild);
+                    
+                    pFill.style.width = ((index + 1) / logs.length) * 100 + '%';
 
-            // Tahap 3 Loading (Berhenti di 99% - Memicu Psikologis)
-            setTimeout(() => {
-                progressBar.style.width = '99%';
-                loaderText.innerText = 'Finalizing...';
-            }, 3000);
-
-            // Tahap 4 - The Catch (Memicu AdBlueMedia Locker)
-            setTimeout(() => {
-                loaderText.innerText = 'ERROR: High Traffic Detected. Verification Required!';
-                loaderText.style.color = '#ff3333';
+                    // Trigger Locker at the end of the queue
+                    if (index === logs.length - 1) {
+                        setTimeout(() => {
+                            const errorLine = document.createElement('div');
+                            errorLine.className = 'log-line';
+                            errorLine.style.color = '#ef4444';
+                            errorLine.style.fontWeight = 'bold';
+                            errorLine.innerText = "> SYSTEM HALT: Bot traffic suspected. Please complete Human Verification to launch game.";
+                            termLogs.insertBefore(errorLine, termLogs.firstChild);
+                            
+                            // AdBlueMedia Locker Trigger
+                            if(typeof _TR === 'function') { _TR(); } 
+                            else { alert("Locker not initialized. Check ad blocker."); }
+                        }, 1500);
+                    }
+                }, delay);
                 
-                // Memanggil kode asli dari AdBlueMedia
-                if(typeof _TR === 'function') {
-                    _TR(); 
-                } else {
-                    alert("AdBlock Detected. Please disable to play.");
-                }
-            }, 4500);
+                // Variasikan waktu tunggu agar terlihat seperti proses nyata
+                delay += Math.floor(Math.random() * 800) + 600; 
+            });
         }
     </script>
 </body>
