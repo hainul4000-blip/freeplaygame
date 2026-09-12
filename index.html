@@ -7,28 +7,43 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        tailwind.config = {
-            theme: { extend: { colors: { obsidian: '#07080d', cyanGlow: '#00f3ff', goldVip: '#ffd700' } } }
-        }
+        tailwind.config = { theme: { extend: { colors: { obsidian: '#07080d', cyanGlow: '#00f3ff', goldVip: '#ffd700', deepTeal: '#052a33' } } } }
     </script>
     <style>
-        body { background-color: #07080d; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        body { background-color: #07080d; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
         .gaming-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #07080d; overflow: hidden; }
         .grid-overlay { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 25s linear infinite; }
         @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+        .glow-orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.25; pointer-events: none; }
+        .glow-cyan { width: 400px; height: 400px; background: #00f3ff; top: -10%; right: -10%; animation: float1 15s ease-in-out infinite; }
+        .glow-gold { width: 350px; height: 350px; background: #ffd700; bottom: -10%; left: -10%; animation: float2 18s ease-in-out infinite; }
+        @keyframes float1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-50px, 50px); } }
+        @keyframes float2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(50px, -50px); } }
         .glass-panel { background: rgba(5, 42, 51, 0.3); backdrop-filter: blur(12px); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px; }
         .btn-gold { background: linear-gradient(135deg, #ffd700, #b8860b); color: #000; font-weight: bold; border: 1px solid #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); transition: all 0.3s; }
-        .btn-gold:hover { transform: translateY(-2px); }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
         .card-hover:hover { transform: translateY(-5px); border-color: #00f3ff; box-shadow: 0 10px 25px rgba(0, 243, 255, 0.2); }
         .nav-center { background: linear-gradient(135deg, #00f3ff, #0088ff); box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); animation: pulseNav 2s infinite; }
         @keyframes pulseNav { 0%, 100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
+        
+        /* Modern CSS Logo Style */
+        .logo-text { font-family: 'Impact', sans-serif; font-style: italic; letter-spacing: 1px; }
+        .logo-fp-box { background: linear-gradient(135deg, #00f3ff, #0055ff); box-shadow: 0 0 15px rgba(0,243,255,0.6); }
     </style>
 </head>
 <body class="pb-24">
-    <div class="gaming-bg"><div class="grid-overlay"></div></div>
+    <div class="gaming-bg"><div class="grid-overlay"></div><div class="glow-orb glow-cyan"></div><div class="glow-orb glow-gold"></div></div>
 
     <header class="fixed top-0 w-full z-50 glass-panel !rounded-none border-t-0 border-x-0 px-4 py-3 flex justify-between items-center bg-obsidian/90">
-        <img src="https://i.postimg.cc/yYcG9Y7Q/logo-header.png" alt="Freeplay Logo" class="h-8 object-contain">
+        <!-- NEW MODERN LOGO -->
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded logo-fp-box flex items-center justify-center border border-cyanGlow">
+                <span class="text-obsidian font-black text-lg italic tracking-tighter">FP</span>
+            </div>
+            <span class="text-xl font-black italic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]">
+                FREE<span class="text-cyanGlow">PLAY</span>
+            </span>
+        </div>
         <div class="px-3 py-1 bg-goldVip text-black rounded-full text-xs font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(255,215,0,0.5)]">
             <i class="fas fa-crown"></i> VIP Portal
         </div>
@@ -47,7 +62,7 @@
             </div>
         </div>
 
-        <h2 id="games" class="text-xl font-bold mb-4 border-l-4 border-cyanGlow pl-3">Featured Games</h2>
+        <h2 id="games" class="text-xl font-bold mb-4 border-l-4 border-cyanGlow pl-3 text-white">Featured Games</h2>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="game-grid"></div>
     </main>
 
@@ -86,7 +101,7 @@
             grid.innerHTML += `
                 <div onclick="selectGame('${game.name}')" class="glass-panel overflow-hidden card-hover relative group flex flex-col cursor-pointer border border-gray-700 bg-obsidian">
                     <div class="absolute top-2 right-2 bg-goldVip text-black text-[10px] font-bold px-2 py-1 rounded z-10 animate-pulse">BONUS READY</div>
-                    <div class="h-32 w-full p-2 flex items-center justify-center border-b border-gray-800">
+                    <div class="h-32 w-full p-2 flex items-center justify-center bg-obsidian border-b border-gray-800">
                         <img src="${game.img}" alt="${game.name}" class="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300">
                     </div>
                     <div class="p-3 text-center flex-grow flex flex-col justify-between">
@@ -97,7 +112,6 @@
             `;
         });
 
-        // ALUR: Cek Login
         function selectGame(gameName) {
             if (localStorage.getItem('isLoggedIn') !== 'true') {
                 window.location.href = 'account.html';
