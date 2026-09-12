@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Freeplay - Account Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { obsidian: '#07080d', cyanGlow: '#00f3ff', goldVip: '#ffd700', deepTeal: '#052a33' } }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #07080d; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        .gaming-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #07080d; overflow: hidden; }
+        .grid-overlay { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 25s linear infinite; }
+        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+        
+        .glass-panel { background: rgba(5, 42, 51, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 12px; }
+        .btn-gold { background: linear-gradient(135deg, #ffd700, #b8860b); color: #000; font-weight: bold; border: 1px solid #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+        .nav-center { background: linear-gradient(135deg, #00f3ff, #0088ff); box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); animation: pulseNav 2s infinite; }
+        @keyframes pulseNav { 0%, 100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
+        
+        input { background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); }
+        input:focus { border-color: #00f3ff; box-shadow: 0 0 8px rgba(0,243,255,0.5); outline: none; }
+    </style>
+</head>
+<body class="pb-24">
+    <div class="gaming-bg"><div class="grid-overlay"></div></div>
+
+    <header class="fixed top-0 w-full z-50 glass-panel !rounded-none border-t-0 border-x-0 px-4 py-3 flex justify-between items-center bg-obsidian/90">
+        <h1 class="text-lg font-bold text-cyanGlow">Account Access</h1>
+        <img src="https://i.postimg.cc/yYcG9Y7Q/logo-header.png" alt="Freeplay Logo" class="h-6">
+    </header>
+
+    <main class="pt-24 px-4 max-w-md mx-auto relative z-10" id="main-content">
+        <!-- Injected via JS -->
+    </main>
+
+    <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-2 pb-4 bg-obsidian/95">
+        <div class="flex justify-between items-center max-w-md mx-auto relative">
+            <a href="index.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white transition-colors"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]">Home</span></a>
+            <a href="index.html#games" class="flex flex-col items-center p-2 text-gray-400 hover:text-white transition-colors"><i class="fas fa-dice text-xl mb-1"></i><span class="text-[10px]">Games</span></a>
+            <a href="transaction.html" class="relative -top-6 flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full nav-center p-1 flex items-center justify-center">
+                    <img src="https://i.postimg.cc/fTmPXTMB/logo-fp.png" alt="FP" class="w-full h-full rounded-full border-2 border-obsidian bg-obsidian">
+                </div>
+            </a>
+            <a href="chat.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white transition-colors"><i class="fas fa-comment-dots text-xl mb-1"></i><span class="text-[10px]">Live Chat</span></a>
+            <a href="account.html" class="flex flex-col items-center p-2 text-cyanGlow"><i class="fas fa-user text-xl mb-1"></i><span class="text-[10px]">Account</span></a>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', renderState);
+
+        function renderState() {
+            const main = document.getElementById('main-content');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            
+            if (isLoggedIn) {
+                const username = localStorage.getItem('username');
+                const bal = parseFloat(localStorage.getItem('balance')) || 0;
+                
+                main.innerHTML = `
+                    <div class="glass-panel p-6 text-center shadow-lg relative overflow-hidden mb-6">
+                        <div class="w-20 h-20 mx-auto rounded-full bg-obsidian border-2 border-goldVip flex items-center justify-center text-3xl font-black text-goldVip shadow-[0_0_15px_rgba(255,215,0,0.3)] mb-3">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-1">${username}</h2>
+                        <div class="bg-goldVip/20 border border-goldVip text-goldVip px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
+                            <i class="fas fa-check-circle"></i> VERIFIED ACCESS
+                        </div>
+                    </div>
+                    <div class="glass-panel p-5 mb-6 border-l-4 border-cyanGlow">
+                        <p class="text-xs text-gray-400 uppercase">Available Funds</p>
+                        <h3 class="text-3xl font-black text-cyanGlow">$${bal.toFixed(2)}</h3>
+                        <a href="transaction.html" class="mt-4 block w-full py-2 rounded border border-cyanGlow/50 text-cyanGlow text-center text-sm font-bold hover:bg-cyanGlow/10 transition-colors">
+                            Withdraw Dashboard
+                        </a>
+                    </div>
+                    <button onclick="handleLogout()" class="w-full glass-panel p-4 flex items-center justify-center gap-2 text-red-400 hover:bg-red-500/10 border-red-500/30">
+                        <i class="fas fa-power-off"></i> Sign Out
+                    </button>
+                `;
+            } else {
+                main.innerHTML = `
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-black text-cyanGlow">VIP Registration</h2>
+                        <p class="text-sm text-gray-400 mt-1">Register to authenticate your gaming terminal.</p>
+                    </div>
+                    <form id="regForm" onsubmit="handleRegister(event)" class="glass-panel p-6 space-y-4">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Player ID / Username</label>
+                            <input type="text" id="reg_user" required class="w-full rounded p-3 text-sm text-white" placeholder="Choose username">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Email Address</label>
+                            <input type="email" required class="w-full rounded p-3 text-sm text-white" placeholder="you@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Secure Password</label>
+                            <input type="password" required class="w-full rounded p-3 text-sm text-white" placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="w-full mt-2 py-3 rounded btn-gold text-lg">
+                            Authenticate Account <i class="fas fa-lock ml-1"></i>
+                        </button>
+                    </form>
+                `;
+            }
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const user = document.getElementById('reg_user').value;
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('username', user);
+            if(!localStorage.getItem('balance')) localStorage.setItem('balance', '0.00');
+            window.location.href = 'index.html';
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            localStorage.removeItem('balance');
+            localStorage.removeItem('generatorCompleted');
+            renderState();
+        }
+    </script>
+</body>
+</html>
+```eof
