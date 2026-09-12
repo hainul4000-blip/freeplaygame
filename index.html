@@ -26,8 +26,7 @@
         .nav-center { background: linear-gradient(135deg, #00f3ff, #0088ff); box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); animation: pulseNav 2s infinite; }
         @keyframes pulseNav { 0%, 100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
         
-        /* Modern CSS Logo Style */
-        .logo-text { font-family: 'Impact', sans-serif; font-style: italic; letter-spacing: 1px; }
+        /* Modern Large CSS Logo */
         .logo-fp-box { background: linear-gradient(135deg, #00f3ff, #0055ff); box-shadow: 0 0 15px rgba(0,243,255,0.6); }
     </style>
 </head>
@@ -35,16 +34,16 @@
     <div class="gaming-bg"><div class="grid-overlay"></div><div class="glow-orb glow-cyan"></div><div class="glow-orb glow-gold"></div></div>
 
     <header class="fixed top-0 w-full z-50 glass-panel !rounded-none border-t-0 border-x-0 px-4 py-3 flex justify-between items-center bg-obsidian/90">
-        <!-- NEW MODERN LOGO -->
-        <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded logo-fp-box flex items-center justify-center border border-cyanGlow">
-                <span class="text-obsidian font-black text-lg italic tracking-tighter">FP</span>
+        <!-- BESAR & ELEGAN -->
+        <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-lg logo-fp-box flex items-center justify-center border border-cyanGlow">
+                <span class="text-obsidian font-black text-xl italic tracking-tighter">FP</span>
             </div>
-            <span class="text-xl font-black italic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]">
+            <span class="text-xl md:text-2xl font-black italic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
                 FREE<span class="text-cyanGlow">PLAY</span>
             </span>
         </div>
-        <div class="px-3 py-1 bg-goldVip text-black rounded-full text-xs font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(255,215,0,0.5)]">
+        <div class="px-3.5 py-1.5 bg-goldVip text-black rounded-full text-xs font-bold uppercase tracking-wider shadow-[0_0_12px_rgba(255,215,0,0.6)]">
             <i class="fas fa-crown"></i> VIP Portal
         </div>
     </header>
@@ -66,15 +65,20 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="game-grid"></div>
     </main>
 
-    <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-2 pb-4 bg-obsidian/95">
+    <!-- Bottom Navigation with Wallet Center Button -->
+    <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-2 pb-4 bg-obsidian/95 backdrop-blur">
         <div class="flex justify-between items-center max-w-md mx-auto relative">
             <a href="index.html" class="flex flex-col items-center p-2 text-cyanGlow"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]">Home</span></a>
             <a href="index.html#games" class="flex flex-col items-center p-2 text-gray-400 hover:text-white transition-colors"><i class="fas fa-dice text-xl mb-1"></i><span class="text-[10px]">Games</span></a>
-            <a href="transaction.html" class="relative -top-6 flex flex-col items-center">
-                <div class="w-16 h-16 rounded-full nav-center p-1 flex items-center justify-center">
-                    <img src="https://i.postimg.cc/fTmPXTMB/logo-fp.png" alt="FP" class="w-full h-full rounded-full border-2 border-obsidian bg-obsidian">
+            
+            <a href="transaction.html" class="relative -top-6 flex flex-col items-center group">
+                <div class="w-16 h-16 rounded-full nav-center p-1 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full rounded-full bg-obsidian flex items-center justify-center border-2 border-cyanGlow">
+                        <i class="fas fa-wallet text-cyanGlow text-xl"></i>
+                    </div>
                 </div>
             </a>
+            
             <a href="chat.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white transition-colors"><i class="fas fa-comment-dots text-xl mb-1"></i><span class="text-[10px]">Live Chat</span></a>
             <a href="account.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white transition-colors"><i class="fas fa-user text-xl mb-1"></i><span class="text-[10px]">Account</span></a>
         </div>
