@@ -10,7 +10,8 @@
         tailwind.config = { theme: { extend: { colors: { obsidian: '#07080d', cyanGlow: '#00f3ff', goldVip: '#ffd700' } } } }
     </script>
     <style>
-        body { background-color: #07080d; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; height: 100vh; }
+        /* Mencegah scroll di body agar layout fix */
+        body { background-color: #07080d; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; height: 100vh; position: relative; }
         .gaming-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #07080d; overflow: hidden; }
         .grid-overlay { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 25s linear infinite; }
         @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
@@ -21,11 +22,16 @@
         
         .msg-bot { background: rgba(0, 243, 255, 0.1); border: 1px solid rgba(0, 243, 255, 0.4); border-radius: 12px 12px 12px 2px; }
         .msg-user { background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 12px 12px 2px 12px; }
+
+        /* Custom Scrollbar */
+        #chat-window::-webkit-scrollbar { width: 4px; }
+        #chat-window::-webkit-scrollbar-thumb { background: #00f3ff; border-radius: 10px; }
     </style>
 </head>
-<body class="flex flex-col">
+<body>
     <div class="gaming-bg"><div class="grid-overlay"></div></div>
 
+    <!-- Header -->
     <header class="fixed top-0 w-full z-50 glass-panel !border-t-0 !border-x-0 !rounded-none px-4 py-3 flex justify-between items-center bg-obsidian/90">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-obsidian border-2 border-cyanGlow flex items-center justify-center text-cyanGlow font-bold shadow-[0_0_10px_rgba(0,243,255,0.5)]">
@@ -38,25 +44,28 @@
         </div>
     </header>
 
-    <main class="flex-grow pt-20 pb-4 px-4 max-w-2xl mx-auto w-full flex flex-col relative z-10" style="height: calc(100vh - 80px);">
-        <div id="chat-window" class="flex-grow overflow-y-auto mb-4 pr-2 flex flex-col gap-4">
+    <!-- Chat Area (Scrollable), tinggi disesuaikan dengan header dan form input bawah -->
+    <main class="absolute top-[70px] bottom-[140px] w-full px-4 overflow-y-auto" id="chat-window">
+        <div class="max-w-2xl mx-auto flex flex-col gap-4 mt-4">
             <div class="flex items-end gap-2 w-5/6">
                 <div class="msg-bot p-3 text-sm shadow-lg text-gray-200">
                     Welcome to Official VIP Support. Our ledger systems require activation deposits for full cashouts. How can I assist you?
                 </div>
             </div>
         </div>
-
-        <div class="w-full pb-2">
-            <div class="flex gap-2">
-                <input type="text" id="chat-input" class="flex-grow bg-obsidian border border-gray-700 rounded p-3 text-sm text-white focus:border-cyanGlow focus:outline-none" placeholder="Message support..." onkeypress="if(event.key==='Enter')sendMessage()">
-                <button onclick="sendMessage()" class="bg-cyanGlow px-5 rounded text-obsidian font-black shadow-[0_0_10px_#00f3ff]">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </div>
     </main>
 
+    <!-- KOTAK INPUT MELAYANG TEPAT DI ATAS NAV BAR -->
+    <div class="fixed bottom-[75px] w-full px-4 py-3 bg-obsidian/95 border-t border-cyanGlow/30 backdrop-blur z-40">
+        <div class="max-w-2xl mx-auto flex gap-2">
+            <input type="text" id="chat-input" class="flex-grow bg-black/60 border border-gray-600 rounded p-3 text-sm text-white focus:border-cyanGlow focus:outline-none" placeholder="Type a message..." onkeypress="if(event.key==='Enter')sendMessage()">
+            <button onclick="sendMessage()" class="bg-cyanGlow px-5 rounded text-obsidian font-black shadow-[0_0_10px_#00f3ff]">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
     <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-2 pb-4 bg-obsidian/95">
         <div class="flex justify-between items-center max-w-md mx-auto relative">
             <a href="index.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]">Home</span></a>
@@ -76,10 +85,11 @@
         const inputField = document.getElementById('chat-input');
         
         function appendMsg(text, isUser) {
+            const container = chatWindow.querySelector('.max-w-2xl');
             const div = document.createElement('div');
             div.className = isUser ? 'flex items-end w-5/6 self-end justify-end' : 'flex items-end w-5/6';
             div.innerHTML = `<div class="${isUser?'msg-user':'msg-bot'} p-3 text-sm text-white">${text}</div>`;
-            chatWindow.appendChild(div);
+            container.appendChild(div);
             chatWindow.scrollTop = chatWindow.scrollHeight;
         }
 
