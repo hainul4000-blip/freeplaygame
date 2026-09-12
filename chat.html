@@ -59,7 +59,8 @@
         </div>
     </header>
 
-    <main class="absolute top-[70px] bottom-[145px] w-full px-4 overflow-y-auto" id="chat-window">
+    <!-- Ruang chat disesuaikan batas bawahnya agar tidak tertutup elemen input -->
+    <main class="absolute top-[70px] bottom-[170px] w-full px-4 overflow-y-auto" id="chat-window">
         <div class="max-w-2xl mx-auto flex flex-col gap-4 mt-4 pb-4">
             <div class="text-center my-2">
                 <span class="text-[10px] bg-obsidian/80 text-gray-400 px-3 py-1 rounded-full border border-gray-800">Secure Terminal Session</span>
@@ -72,7 +73,8 @@
         </div>
     </main>
 
-    <div class="fixed bottom-[105px] w-full px-4 z-40 overflow-x-auto whitespace-nowrap scrollbar-none">
+    <!-- Tombol pilihan cepat (chips) dinaikkan posisinya -->
+    <div class="fixed bottom-[125px] w-full px-4 z-40 overflow-x-auto whitespace-nowrap scrollbar-none">
         <div class="max-w-2xl mx-auto flex gap-2">
             <button onclick="sendQuickReply('How to inject credits?')" class="chip px-3 py-1.5 rounded-full text-xs text-cyanGlow font-medium inline-flex items-center gap-1">
                 <i class="fas fa-bolt"></i> How to inject credits?
@@ -86,7 +88,8 @@
         </div>
     </div>
 
-    <div class="fixed bottom-[55px] w-full px-4 py-2.5 bg-obsidian/95 border-t border-cyanGlow/30 backdrop-blur z-40">
+    <!-- Kotak input chat ditempatkan persis di atas navbar bawah -->
+    <div class="fixed bottom-[65px] w-full px-4 py-2 bg-obsidian/95 border-t border-cyanGlow/30 backdrop-blur z-40">
         <div class="max-w-2xl mx-auto flex gap-2">
             <input type="text" id="chat-input" class="flex-grow bg-black/60 border border-gray-700 rounded-xl p-2.5 text-sm text-white focus:border-cyanGlow focus:outline-none" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendMessage()">
             <button onclick="sendMessage()" class="bg-gradient-to-r from-cyanGlow to-blue-500 px-4 rounded-xl text-obsidian font-black shadow-[0_0_15px_rgba(0,243,255,0.4)] hover:scale-105 transition-transform">
@@ -167,6 +170,7 @@
         }
 
         function sendQuickReply(text) {
+            appendPosMsg = text;
             appendMsg(text, true);
             showTyping();
             setTimeout(() => {
