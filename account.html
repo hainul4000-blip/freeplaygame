@@ -20,20 +20,25 @@
         @keyframes pulseNav { 0%, 100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
         input { background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); }
         input:focus { border-color: #00f3ff; box-shadow: 0 0 8px rgba(0,243,255,0.5); outline: none; }
-        .logo-fp-box { background: linear-gradient(135deg, #00f3ff, #0055ff); box-shadow: 0 0 15px rgba(0,243,255,0.6); }
     </style>
 </head>
 <body class="pb-24">
     <div class="gaming-bg"><div class="grid-overlay"></div></div>
 
     <header class="fixed top-0 w-full z-50 glass-panel !rounded-none border-t-0 border-x-0 px-4 py-3 flex justify-between items-center bg-obsidian/90">
-        <div class="flex items-center gap-2.5">
-            <div class="w-9 h-9 rounded-lg logo-fp-box flex items-center justify-center border border-cyanGlow">
-                <span class="text-obsidian font-black text-lg italic tracking-tighter">FP</span>
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyanGlow to-goldVip p-0.5 shadow-[0_0_12px_rgba(0,243,255,0.4)] flex items-center justify-center">
+                <div class="w-full h-full bg-obsidian rounded-[10px] flex items-center justify-center">
+                    <i class="fas fa-gamepad text-cyanGlow text-sm"></i>
+                </div>
             </div>
-            <span class="text-lg font-black italic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">FREE<span class="text-cyanGlow">PLAY</span></span>
+            <div class="flex flex-col">
+                <span class="text-base font-black italic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyanGlow to-goldVip">
+                    FREE<span class="text-goldVip">PLAY</span>
+                </span>
+            </div>
         </div>
-        <h1 class="text-sm font-bold text-cyanGlow">Account Access</h1>
+        <h1 class="text-xs font-bold text-cyanGlow uppercase tracking-wider">Account Access</h1>
     </header>
 
     <main class="pt-24 px-4 max-w-md mx-auto relative z-10" id="main-content"></main>
