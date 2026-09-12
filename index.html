@@ -31,7 +31,6 @@
     <div class="gaming-bg"><div class="grid-overlay"></div><div class="glow-orb glow-cyan"></div><div class="glow-orb glow-gold"></div></div>
 
     <header class="fixed top-0 w-full z-50 glass-panel !rounded-none border-t-0 border-x-0 px-4 py-3 flex justify-between items-center bg-obsidian/90">
-        <!-- ICON GAMEPAD + TEKS FREEPLAY ELEGAN -->
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyanGlow to-goldVip p-0.5 shadow-[0_0_15px_rgba(0,243,255,0.4)] flex items-center justify-center">
                 <div class="w-full h-full bg-obsidian rounded-[10px] flex items-center justify-center">
@@ -54,7 +53,7 @@
     <main class="pt-24 px-4 max-w-5xl mx-auto relative z-10">
         <div class="text-center mb-8">
             <h1 class="text-3xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyanGlow to-white drop-shadow-[0_0_10px_rgba(0,243,255,0.7)]">Official US Sweepstakes</h1>
-            <p class="text-gray-400 text-sm">Select your favorite game to inject credits securely.</p>
+            <p class="text-gray-400 text-sm">Select your favorite game terminal to begin credit synchronization.</p>
         </div>
 
         <div class="mb-8 flex justify-center">
@@ -106,13 +105,13 @@
         games.forEach(game => {
             grid.innerHTML += `
                 <div onclick="selectGame('${game.name}')" class="glass-panel overflow-hidden card-hover relative group flex flex-col cursor-pointer border border-gray-700 bg-obsidian">
-                    <div class="absolute top-2 right-2 bg-goldVip text-black text-[10px] font-bold px-2 py-1 rounded z-10 animate-pulse">BONUS READY</div>
+                    <div class="absolute top-2 right-2 bg-goldVip text-black text-[10px] font-bold px-2 py-1 rounded z-15 animate-pulse">SYNC READY</div>
                     <div class="h-32 w-full p-2 flex items-center justify-center bg-obsidian border-b border-gray-800">
                         <img src="${game.img}" alt="${game.name}" class="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300">
                     </div>
                     <div class="p-3 text-center flex-grow flex flex-col justify-between">
                         <h3 class="font-bold text-sm mb-2 text-white">${game.name}</h3>
-                        <button class="w-full py-1.5 rounded btn-gold text-xs">PLAY GAME</button>
+                        <button class="w-full py-1.5 rounded btn-gold text-xs">CONNECT</button>
                     </div>
                 </div>
             `;
@@ -127,7 +126,7 @@
         }
 
         const notifications = [
-            "User Jas*** just cashed out $1,250!", "User Mik*** completed VIP verification.", "System: Secure servers online.", "User ***77 successfully injected $500.", "User VIP*** withdrew $3,400 via USDT."
+            "User Jas*** synchronized terminal successfully.", "User Mik*** connected to server node.", "System: Secure gateway online.", "User ***77 initiated session.", "Network status: Optimal."
         ];
         let notifIndex = 0;
         const notifBar = document.getElementById('notification-bar');
