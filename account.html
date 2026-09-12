@@ -20,6 +20,8 @@
         @keyframes pulseNav { 0%, 100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
         input { background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); }
         input:focus { border-color: #00f3ff; box-shadow: 0 0 8px rgba(0,243,255,0.5); outline: none; }
+        
+        .logo-fp-box { background: linear-gradient(135deg, #00f3ff, #0055ff); box-shadow: 0 0 15px rgba(0,243,255,0.6); }
     </style>
 </head>
 <body class="pb-24">
@@ -27,7 +29,13 @@
 
     <header class="fixed top-0 w-full z-50 glass-panel !rounded-none border-t-0 border-x-0 px-4 py-3 flex justify-between items-center bg-obsidian/90">
         <h1 class="text-lg font-bold text-cyanGlow">Account Access</h1>
-        <img src="https://i.postimg.cc/yYcG9Y7Q/logo-header.png" alt="Freeplay Logo" class="h-6">
+        <!-- NEW LOGO -->
+        <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded logo-fp-box flex items-center justify-center border border-cyanGlow">
+                <span class="text-obsidian font-black text-xs italic tracking-tighter">FP</span>
+            </div>
+            <span class="text-sm font-black italic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">FREEPLAY</span>
+        </div>
     </header>
 
     <main class="pt-24 px-4 max-w-md mx-auto relative z-10" id="main-content"></main>
@@ -57,7 +65,6 @@
                 const username = localStorage.getItem('username');
                 const bal = parseFloat(localStorage.getItem('balance')) || 0;
                 
-                // ALUR: Cek Status Verifikasi VIP dari Generator
                 const hasCompleted = localStorage.getItem('generatorCompleted') === 'true';
                 const tierBadge = hasCompleted 
                     ? `<div class="bg-goldVip/20 border border-goldVip text-goldVip px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1 shadow-[0_0_10px_rgba(255,215,0,0.5)]"><i class="fas fa-crown"></i> VERIFIED VIP</div>`
@@ -115,7 +122,6 @@
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('username', user);
             if(!localStorage.getItem('balance')) localStorage.setItem('balance', '0.00');
-            // ALUR: Setelah login, kembalikan ke beranda
             window.location.href = 'index.html';
         }
 
