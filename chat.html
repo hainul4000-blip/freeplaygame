@@ -21,7 +21,6 @@
         .msg-user { background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 12px 12px 2px 12px; }
         #chat-window::-webkit-scrollbar { width: 4px; }
         #chat-window::-webkit-scrollbar-thumb { background: #00f3ff; border-radius: 10px; }
-        .logo-fp-box { background: linear-gradient(135deg, #00f3ff, #0055ff); box-shadow: 0 0 15px rgba(0,243,255,0.6); }
     </style>
 </head>
 <body>
@@ -37,9 +36,11 @@
                 <p class="text-[10px] text-green-400">Agent Online</p>
             </div>
         </div>
-        <div class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-lg logo-fp-box flex items-center justify-center border border-cyanGlow">
-                <span class="text-obsidian font-black text-sm italic tracking-tighter">FP</span>
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyanGlow to-goldVip p-0.5 shadow-[0_0_12px_rgba(0,243,255,0.4)] flex items-center justify-center">
+                <div class="w-full h-full bg-obsidian rounded-[10px] flex items-center justify-center">
+                    <i class="fas fa-gamepad text-cyanGlow text-sm"></i>
+                </div>
             </div>
         </div>
     </header>
