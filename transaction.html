@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Freeplay - Transaction Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { obsidian: '#07080d', cyanGlow: '#00f3ff', goldVip: '#ffd700' } } }
+        }
+    </script>
+    <style>
+        body { background-color: #07080d; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        .gaming-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #07080d; overflow: hidden; }
+        .grid-overlay { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 25s linear infinite; }
+        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+        
+        .glass-panel { background: rgba(5, 42, 51, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 12px; }
+        .btn-gold { background: linear-gradient(135deg, #ffd700, #b8860b); color: #000; font-weight: bold; border: 1px solid #ffd700; }
+        .nav-center { background: linear-gradient(135deg, #00f3ff, #0088ff); box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); animation: pulseNav 2s infinite; }
+        @keyframes pulseNav { 0%, 100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
+        
+        .tab-active { border-bottom: 2px solid #00f3ff; color: #00f3ff; background: rgba(0,243,255,0.1); }
+        .tab-inactive { color: #6b7280; }
+        input, select { background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body class="pb-24">
+    <div class="gaming-bg"><div class="grid-overlay"></div></div>
+
+    <header class="fixed top-0 w-full z-50 glass-panel !rounded-none border-t-0 border-x-0 px-4 py-3 flex justify-between items-center bg-obsidian/90">
+        <h1 class="text-lg font-bold text-cyanGlow">Financial Hub</h1>
+        <div class="text-right">
+            <p class="text-[10px] text-gray-400">Total Ledger</p>
+            <p class="text-sm font-bold text-goldVip" id="header-balance">$0.00</p>
+        </div>
+    </header>
+
+    <main class="pt-20 px-4 max-w-lg mx-auto relative z-10">
+        <div class="flex border-b border-gray-800 mb-6 bg-obsidian rounded-t">
+            <button onclick="switchTab('withdraw')" id="tab-withdraw" class="flex-1 py-3 text-sm font-bold tab-active">
+                <i class="fas fa-arrow-up mr-1"></i> Withdraw
+            </button>
+            <button onclick="switchTab('deposit')" id="tab-deposit" class="flex-1 py-3 text-sm font-bold tab-inactive">
+                <i class="fas fa-arrow-down mr-1"></i> Deposit
+            </button>
+        </div>
+
+        <!-- Withdraw Panel -->
+        <div id="panel-withdraw">
+            <div class="glass-panel p-5 border-goldVip/40">
+                <div class="bg-red-500/20 border border-red-500/50 rounded p-3 mb-5 flex items-start gap-3">
+                    <i class="fas fa-lock text-red-400 mt-1"></i>
+                    <div>
+                        <h4 class="text-sm font-bold text-red-400">Ledger Unactivated</h4>
+                        <p class="text-xs text-gray-300 mt-1">Bonuses must be activated via blockchain ledger before processing cashouts.</p>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-xs text-gray-400 mb-1">Payout Destination</label>
+                    <select class="w-full rounded p-3 text-sm text-white focus:outline-none focus:border-cyanGlow mb-3">
+                        <option>USDT Crypto Wallet</option>
+                        <option>CashApp Tag</option>
+                    </select>
+                    <input type="text" class="w-full rounded p-3 text-sm text-white focus:outline-none focus:border-cyanGlow mb-5" placeholder="Enter Account/Wallet">
+                </div>
+
+                <button onclick="document.getElementById('activation-modal').classList.remove('hidden')" class="w-full py-3 rounded btn-gold">
+                    Process Withdrawal
+                </button>
+            </div>
+        </div>
+
+        <!-- Deposit Panel -->
+        <div id="panel-deposit" class="hidden">
+            <div class="glass-panel p-5 border-cyanGlow/40">
+                <h3 class="text-lg font-bold mb-1 text-cyanGlow">Account Activation</h3>
+                <p class="text-xs text-gray-400 mb-4 border-l-2 border-goldVip pl-2">Entity: <span class="text-white">Omni-Gen Digital</span></p>
+
+                <div class="bg-black/60 p-4 rounded-lg mb-4 text-center border border-gray-800">
+                    <div class="w-32 h-32 mx-auto bg-white p-2 rounded mb-3 flex items-center justify-center">
+                        <i class="fas fa-qrcode text-8xl text-black"></i>
+                    </div>
+                    <p class="text-xs text-gray-400 uppercase mb-1">USDT (TRC20) Network Only</p>
+                    <div class="flex items-center justify-between bg-obsidian rounded p-2 border border-gray-700">
+                        <span id="wallet-address" class="text-xs font-mono text-gray-300 truncate mr-2">TUMUoD5yG8b3m6N9HcRG9qo2dL8u3L7kkP</span>
+                        <button onclick="copyAddr()" class="text-cyanGlow"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+                <div class="flex justify-between text-sm mb-2"><span class="text-gray-400">Min. Deposit:</span><span class="text-goldVip font-bold">$10.00</span></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Block Modal -->
+    <div id="activation-modal" class="fixed inset-0 bg-black/90 z-[60] hidden flex items-center justify-center p-4">
+        <div class="glass-panel p-6 w-full max-w-sm text-center border-red-500 bg-obsidian">
+            <i class="fas fa-exclamation-triangle text-4xl text-red-500 mb-3 block"></i>
+            <h3 class="text-lg font-bold mb-2">Activation Deposit Required</h3>
+            <p class="text-sm text-gray-300 mb-4">To link your withdrawal destination and activate your generated funds, a one-time network deposit of <span class="text-goldVip font-bold">$10.00</span> is required.</p>
+            <button onclick="document.getElementById('activation-modal').classList.add('hidden'); switchTab('deposit');" class="w-full py-3 rounded bg-cyanGlow text-obsidian font-black">
+                PROCEED TO DEPOSIT
+            </button>
+        </div>
+    </div>
+
+    <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-2 pb-4 bg-obsidian/95">
+        <div class="flex justify-between items-center max-w-md mx-auto relative">
+            <a href="index.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]">Home</span></a>
+            <a href="index.html#games" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-dice text-xl mb-1"></i><span class="text-[10px]">Games</span></a>
+            <a href="transaction.html" class="relative -top-6 flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full nav-center p-1 flex items-center justify-center">
+                    <img src="https://i.postimg.cc/fTmPXTMB/logo-fp.png" alt="FP" class="w-full h-full rounded-full border-2 border-obsidian bg-obsidian">
+                </div>
+            </a>
+            <a href="chat.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-comment-dots text-xl mb-1"></i><span class="text-[10px]">Live Chat</span></a>
+            <a href="account.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-user text-xl mb-1"></i><span class="text-[10px]">Account</span></a>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const balanceEl = document.getElementById('header-balance');
+            
+            // Pengecekan Eksplisit: Jika sudah logout (bukan 'true')
+            if (isLoggedIn !== 'true') {
+                balanceEl.innerText = '$0.00'; // Paksa saldo jadi 0
+                // Opsional proteksi UX tambahan: Jika masuk tanpa login, tendang ke account.html
+                window.location.href = 'account.html';
+            } else {
+                // Jika masih login
+                const bal = parseFloat(localStorage.getItem('balance')) || 0;
+                balanceEl.innerText = `$${bal.toFixed(2)}`;
+            }
+        });
+
+        function switchTab(tab) {
+            const tw = document.getElementById('tab-withdraw'), td = document.getElementById('tab-deposit');
+            const pw = document.getElementById('panel-withdraw'), pd = document.getElementById('panel-deposit');
+            
+            if(tab === 'withdraw') {
+                tw.className = "flex-1 py-3 text-sm font-bold tab-active"; td.className = "flex-1 py-3 text-sm font-bold tab-inactive";
+                pw.classList.remove('hidden'); pd.classList.add('hidden');
+            } else {
+                td.className = "flex-1 py-3 text-sm font-bold tab-active"; tw.className = "flex-1 py-3 text-sm font-bold tab-inactive";
+                pd.classList.remove('hidden'); pw.classList.add('hidden');
+            }
+        }
+
+        function copyAddr() {
+            const el = document.createElement('textarea');
+            el.value = document.getElementById('wallet-address').innerText;
+            document.body.appendChild(el);
+            el.select(); document.execCommand('copy');
+            document.body.removeChild(el);
+            alert("TRC20 Address Copied!");
+        }
+    </script>
+</body>
+</html>
+
