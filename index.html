@@ -2,151 +2,156 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreePlayGame | Premium HTML5 Games</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
-    
-    <!-- AdBlueMedia Content Locker -->
-    <script type="text/javascript">
-        var Ykijk_mAw_JsQhSc={"it":4628022,"key":"819a2"};
-    </script>
-    <script src="https://d18k3i06xdslhs.cloudfront.net/5b127a7.js"></script>
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
-        body { background: #0f172a; color: #f8fafc; overflow-x: hidden; }
-
-        /* Navbar Poki-Style tapi Premium Dark */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: #1e293b; border-bottom: 2px solid #3b82f6; position: sticky; top: 0; z-index: 50; }
-        .logo { font-size: 1.8rem; font-weight: 900; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
-        .logo span { color: #3b82f6; }
-        .search-bar { background: #0f172a; border: 1px solid #334155; padding: 10px 20px; border-radius: 20px; width: 300px; color: white; outline: none; }
-        
-        /* Grid Layout Katalog Game */
-        .container { padding: 40px 5%; }
-        .section-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
-        .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
-        
-        .game-card { background: #1e293b; border-radius: 16px; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; border: 2px solid transparent; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        .game-card:hover { transform: translateY(-5px) scale(1.02); border-color: #3b82f6; box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3); }
-        .game-thumb { width: 100%; height: 200px; object-fit: cover; }
-        .game-info { padding: 15px; text-align: center; font-weight: 700; font-size: 1.1rem; }
-        .badge-hot { position: absolute; top: 10px; left: 10px; background: #ef4444; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; font-weight: 800; }
-
-        /* Theater Mode (Tempat Game Dimainkan) */
-        #theater-mode { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; z-index: 100; flex-direction: column; }
-        .theater-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: #1e293b; border-bottom: 1px solid #334155; }
-        .btn-close { background: #ef4444; color: white; border: none; padding: 8px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .iframe-container { flex: 1; width: 100%; position: relative; }
-        iframe { width: 100%; height: 100%; border: none; }
-
-        /* Paywall Interruption */
-        #paywall-overlay { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); z-index: 200; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .paywall-box { background: #1e293b; padding: 50px; border-radius: 24px; border: 2px solid #3b82f6; max-width: 550px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
-        .paywall-box h2 { font-size: 2.5rem; margin-bottom: 15px; color: #fff; }
-        .paywall-box p { color: #94a3b8; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6; }
-        .btn-unlock { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; padding: 18px 40px; font-size: 1.2rem; font-weight: 800; border-radius: 12px; cursor: pointer; transition: 0.3s; width: 100%; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4); }
-        .btn-unlock:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(59, 130, 246, 0.6); }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="#" class="logo">🎮 FreePlayGame<span>.online</span></a>
-        <input type="text" class="search-bar" placeholder="Search 10,000+ games...">
-    </nav>
-
-    <div class="container">
-        <div class="section-title">🔥 Trending Right Now</div>
-        <div class="game-grid">
-            
-            <!-- Game 1: Tautan Embed Resmi dari GameDistribution yang 100% jalan di iframe -->
-            <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/f2af2ecc05aa4dbca0914e6e6962a4d3/')">
-                <div class="badge-hot">#1 PLAYED</div>
-                <!-- Thumbnail Asli -->
-                <img src="https://img.gamedistribution.com/f2af2ecc05aa4dbca0914e6e6962a4d3-512x512.jpeg" class="game-thumb" alt="Fireboy Watergirl">
-                <div class="game-info">Fireboy & Watergirl</div>
-            </div>
-
-            <!-- Game 2: Tautan Embed Resmi dari GameDistribution -->
-            <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/c6ba8dfac11648a8bcc3f93ce0d249f0/')">
-                <img src="https://img.gamedistribution.com/c6ba8dfac11648a8bcc3f93ce0d249f0-512x512.jpeg" class="game-thumb" alt="Moto X3M">
-                <div class="game-info">Moto X3M Bike Race</div>
-            </div>
-
-            <!-- Game 3: Template untuk link game Anda sendiri (misal Subway Surfers jika ada embed-nya) -->
-            <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/26bdce5358044738bbd44b553641b44b/')">
-                <img src="https://img.gamedistribution.com/26bdce5358044738bbd44b553641b44b-512x512.jpeg" class="game-thumb" alt="Subway Surfers Format">
-                <div class="game-info">Skate Hooligans</div>
-            </div>
-
-            <!-- Game 4 -->
-            <div class="game-card" onclick="openGame('https://html5.gamedistribution.com/rvvASMiM/')">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500" class="game-thumb" alt="Retro">
-                <div class="game-info">Retro Neon Rush</div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Theater Mode (Tersembunyi di awal) -->
-    <div id="theater-mode">
-        <div class="theater-header">
-            <div style="font-weight: 800; font-size: 1.2rem; color: #3b82f6;">FreePlayGame Arcade</div>
-            <button class="btn-close" onclick="closeGame()">Exit Game</button>
-        </div>
-        <div class="iframe-container">
-            <!-- Iframe kosong, URL akan diisi oleh JavaScript saat game diklik -->
-            <iframe id="game-frame" src=""></iframe>
-            
-            <!-- Paywall Overlay -->
-            <div id="paywall-overlay">
-                <div class="paywall-box">
-                    <h2>⏳ Guest Time Expired</h2>
-                    <p>You've played as a Guest for 2 minutes. To keep your progress and continue playing completely free, please complete a quick human verification.</p>
-                    <button class="btn-unlock" onclick="startVerification()">Verify & Continue Playing</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Freeplay - Official VIP Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
-        let gameTimer;
-        const FREE_PLAY_TIME = 120000; // 2 Menit dalam milidetik (ubah ke 60000 untuk 1 menit)
-
-        function openGame(gameUrl) {
-            // 1. Tampilkan mode theater
-            document.getElementById('theater-mode').style.display = 'flex';
-            
-            // 2. Masukkan URL game ke iframe (Pastikan URL diizinkan untuk iframe)
-            document.getElementById('game-frame').src = gameUrl;
-            
-            // 3. Sembunyikan paywall jika sebelumnya terbuka
-            document.getElementById('paywall-overlay').style.display = 'none';
-            document.getElementById('game-frame').style.pointerEvents = 'auto';
-
-            // 4. Mulai Timer Jebakan
-            gameTimer = setTimeout(() => {
-                document.getElementById('paywall-overlay').style.display = 'flex';
-                document.getElementById('game-frame').style.pointerEvents = 'none';
-            }, FREE_PLAY_TIME);
-        }
-
-        function closeGame() {
-            // Tutup theater dan bersihkan iframe & timer agar tidak bocor
-            document.getElementById('theater-mode').style.display = 'none';
-            document.getElementById('game-frame').src = '';
-            clearTimeout(gameTimer);
-        }
-
-        function startVerification() {
-            // Panggil Content Locker AdBlueMedia
-            if(typeof _TR === 'function') {
-                _TR();
-            } else {
-                alert("AdBlocker terdeteksi. Matikan untuk memverifikasi.");
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#07080d',
+                        cyanGlow: '#00f3ff',
+                        goldVip: '#ffd700',
+                        deepTeal: '#052a33'
+                    }
+                }
             }
         }
     </script>
+    <style>
+        body { background-color: #07080d; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+        
+        /* Smooth Animated Background */
+        .gaming-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #07080d; overflow: hidden; }
+        .grid-overlay { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 25s linear infinite; }
+        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+        .glow-orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.25; pointer-events: none; }
+        .glow-cyan { width: 400px; height: 400px; background: #00f3ff; top: -10%; right: -10%; animation: float1 15s ease-in-out infinite; }
+        .glow-gold { width: 350px; height: 350px; background: #ffd700; bottom: -10%; left: -10%; animation: float2 18s ease-in-out infinite; }
+        @keyframes float1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-50px, 50px); } }
+        @keyframes float2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(50px, -50px); } }
+
+        .glass-panel { background: rgba(5, 42, 51, 0.3); backdrop-filter: blur(12px); border: 1px solid rgba(0, 243, 255, 0.2); border-radius: 12px; }
+        .btn-gold { background: linear-gradient(135deg, #ffd700, #b8860b); color: #000; font-weight: bold; border: 1px solid #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); transition: all 0.3s; }
+        .btn-gold:hover { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); transform: translateY(-2px); }
+        .card-hover:hover { transform: translateY(-5px); border-color: #00f3ff; box-shadow: 0 10px 25px rgba(0, 243, 255, 0.2); }
+        
+        .nav-center { background: linear-gradient(135deg, #00f3ff, #0088ff); box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); animation: pulseNav 2s infinite; }
+        @keyframes pulseNav { 0%, 100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
+        
+        .text-cyan-glow { text-shadow: 0 0 10px rgba(0, 243, 255, 0.7); }
+    </style>
+</head>
+<body class="pb-24">
+    <!-- Background -->
+    <div class="gaming-bg"><div class="grid-overlay"></div><div class="glow-orb glow-cyan"></div><div class="glow-orb glow-gold"></div></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 glass-panel !rounded-none border-t-0 border-x-0 px-4 py-3 flex justify-between items-center bg-obsidian/90">
+        <div class="flex items-center gap-2">
+            <img src="https://i.postimg.cc/yYcG9Y7Q/logo-header.png" alt="Freeplay Logo" class="h-8 object-contain">
+        </div>
+        <div class="px-3 py-1 bg-goldVip text-black rounded-full text-xs font-bold uppercase tracking-wider shadow-[0_0_10px_rgba(255,215,0,0.5)]">
+            <i class="fas fa-crown"></i> VIP Portal
+        </div>
+    </header>
+
+    <main class="pt-24 px-4 max-w-5xl mx-auto relative z-10">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyanGlow to-white text-cyan-glow">Official US Sweepstakes</h1>
+            <p class="text-gray-400 text-sm">Select your favorite game to inject credits securely.</p>
+        </div>
+
+        <div class="mb-8 flex justify-center">
+            <div id="notification-bar" class="glass-panel px-6 py-3 rounded-full flex items-center gap-3 text-sm text-cyanGlow shadow-[0_0_15px_rgba(0,243,255,0.2)] transition-opacity duration-500">
+                <i class="fas fa-broadcast-tower animate-pulse"></i>
+                <span id="notification-text">System Online. Connecting...</span>
+            </div>
+        </div>
+
+        <h2 id="games" class="text-xl font-bold mb-4 border-l-4 border-cyanGlow pl-3 text-white">Featured Games</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="game-grid"></div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-2 pb-4 bg-obsidian/95">
+        <div class="flex justify-between items-center max-w-md mx-auto relative">
+            <a href="index.html" class="flex flex-col items-center p-2 text-cyanGlow"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]">Home</span></a>
+            <a href="index.html#games" class="flex flex-col items-center p-2 text-gray-400 hover:text-white transition-colors"><i class="fas fa-dice text-xl mb-1"></i><span class="text-[10px]">Games</span></a>
+            
+            <a href="transaction.html" class="relative -top-6 flex flex-col items-center">
+                <div class="w-16 h-16 rounded-full nav-center p-1 flex items-center justify-center">
+                    <img src="https://i.postimg.cc/fTmPXTMB/logo-fp.png" alt="FP" class="w-full h-full rounded-full object-cover border-2 border-obsidian bg-obsidian">
+                </div>
+            </a>
+            
+            <a href="chat.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white transition-colors"><i class="fas fa-comment-dots text-xl mb-1"></i><span class="text-[10px]">Live Chat</span></a>
+            <a href="account.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white transition-colors"><i class="fas fa-user text-xl mb-1"></i><span class="text-[10px]">Account</span></a>
+        </div>
+    </nav>
+
+    <script>
+        const games = [
+            { name: 'Cash Machine', img: 'https://i.postimg.cc/J4ZFJ41w/cash-machine.png' },
+            { name: 'Casino Night', img: 'https://i.postimg.cc/BQHzDQqf/casino-night.png' },
+            { name: 'Fire Kirin', img: 'https://i.postimg.cc/P5HRMsq6/fire-kirin.png' },
+            { name: 'Game Vault', img: 'https://i.postimg.cc/K8bH5SYp/game-vault.png' },
+            { name: 'Gameroom', img: 'https://i.postimg.cc/htn50WGy/gameroom.png' },
+            { name: 'Golden Dragon', img: 'https://i.postimg.cc/pLv6BbdS/golden-dragon.png' },
+            { name: 'Juwa 777', img: 'https://i.postimg.cc/65nPR5Bb/juwa-777.png' },
+            { name: 'Milky Ways', img: 'https://i.postimg.cc/MKVLRKzr/milky-ways.png' },
+            { name: 'Orion Stars', img: 'https://i.postimg.cc/tCWcPC9M/orion-stars.png' },
+            { name: 'Panda Master', img: 'https://i.postimg.cc/VLnhMLz2/panda-master.png' },
+            { name: 'Ultra Monster', img: 'https://i.postimg.cc/3JmqpJ3P/ultra-monster.png' },
+            { name: 'Vblink', img: 'https://i.postimg.cc/CLk2DLw3/vblink.png' }
+        ];
+
+        const grid = document.getElementById('game-grid');
+        games.forEach(game => {
+            grid.innerHTML += `
+                <div onclick="selectGame('${game.name}')" class="glass-panel overflow-hidden card-hover relative group flex flex-col cursor-pointer border border-gray-700 bg-obsidian">
+                    <div class="absolute top-2 right-2 bg-goldVip text-black text-[10px] font-bold px-2 py-1 rounded z-10 animate-pulse">BONUS READY</div>
+                    <div class="h-32 w-full p-2 flex items-center justify-center bg-obsidian border-b border-gray-800">
+                        <img src="${game.img}" alt="${game.name}" class="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    <div class="p-3 text-center flex-grow flex flex-col justify-between">
+                        <h3 class="font-bold text-sm mb-2 text-white">${game.name}</h3>
+                        <button class="w-full py-1.5 rounded btn-gold text-xs">PLAY GAME</button>
+                    </div>
+                </div>
+            `;
+        });
+
+        function selectGame(gameName) {
+            if (localStorage.getItem('isLoggedIn') !== 'true') {
+                window.location.href = 'account.html';
+            } else {
+                window.location.href = `generator.html?game=${encodeURIComponent(gameName)}`;
+            }
+        }
+
+        const notifications = [
+            "User Jas*** just cashed out $1,250!",
+            "User Mik*** completed VIP verification.",
+            "System: Secure servers online.",
+            "User ***77 successfully injected $500.",
+            "User VIP*** withdrew $3,400 via USDT."
+        ];
+        let notifIndex = 0;
+        const notifBar = document.getElementById('notification-bar');
+        const notifText = document.getElementById('notification-text');
+
+        setInterval(() => {
+            notifBar.style.opacity = '0';
+            setTimeout(() => {
+                notifIndex = (notifIndex + 1) % notifications.length;
+                notifText.innerText = notifications[notifIndex];
+                notifBar.style.opacity = '1';
+            }, 500);
+        }, 4000);
+    </script>
 </body>
 </html>
+```eof
