@@ -21,7 +21,7 @@
         .msg-user { background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 12px 12px 2px 12px; }
         #chat-window::-webkit-scrollbar { width: 4px; }
         #chat-window::-webkit-scrollbar-thumb { background: #00f3ff; border-radius: 10px; }
-        .chip { background: rgba(0, 243, 255, 0.1); border: 1px solid rgba(0, 243, 255, 0.3); }
+        .chip { background: rgba(0, 243, 255, 0.1); border: 1px solid rgba(0, 243, 255, 0.3); transition: all 0.2s; }
         .chip:hover { background: rgba(0, 243, 255, 0.25); border-color: #00f3ff; }
     </style>
 </head>
@@ -44,7 +44,7 @@
         <a href="transactionsuccess.html" class="text-xs bg-goldVip text-black px-3 py-1.5 rounded font-bold">Deposit $10</a>
     </header>
 
-    <main class="absolute top-[70px] bottom-[145px] w-full px-4 overflow-y-auto" id="chat-window">
+    <main class="absolute top-[70px] bottom-[170px] w-full px-4 overflow-y-auto" id="chat-window">
         <div class="max-w-2xl mx-auto flex flex-col gap-4 mt-4 pb-4">
             <div class="flex items-end gap-2 w-5/6 md:w-3/4">
                 <div class="msg-bot p-3.5 text-sm text-gray-200 leading-relaxed">
@@ -54,7 +54,7 @@
         </div>
     </main>
 
-    <div class="fixed bottom-[105px] w-full px-4 z-40 overflow-x-auto whitespace-nowrap scrollbar-none">
+    <div class="fixed bottom-[125px] w-full px-4 z-40 overflow-x-auto whitespace-nowrap scrollbar-none">
         <div class="max-w-2xl mx-auto flex gap-2">
             <button onclick="sendQuickReply('Why is my transfer stuck at 99%?')" class="chip px-3 py-1.5 rounded-full text-xs text-cyanGlow font-medium inline-flex items-center gap-1">
                 <i class="fas fa-question-circle"></i> Why stuck at 99%?
@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <div class="fixed bottom-[55px] w-full px-4 py-2.5 bg-obsidian/95 border-t border-cyanGlow/30 backdrop-blur z-40">
+    <div class="fixed bottom-[65px] w-full px-4 py-2 bg-obsidian/95 border-t border-cyanGlow/30 backdrop-blur z-40">
         <div class="max-w-2xl mx-auto flex gap-2">
             <input type="text" id="chat-input" class="flex-grow bg-black/60 border border-gray-700 rounded-xl p-2.5 text-sm text-white focus:border-cyanGlow focus:outline-none" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendMessage()">
             <button onclick="sendMessage()" class="bg-gradient-to-r from-cyanGlow to-blue-500 px-4 rounded-xl text-obsidian font-black shadow-[0_0_15px_rgba(0,243,255,0.4)]">
@@ -74,7 +74,7 @@
         </div>
     </div>
 
-    <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-2 pb-4 bg-obsidian/95 backdrop-blur">
+    <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-1.5 pb-2 bg-obsidian/95 backdrop-blur">
         <div class="flex justify-between items-center max-w-md mx-auto relative">
             <a href="success.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]">Home</span></a>
             <a href="accountsuccess.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-user text-xl mb-1"></i><span class="text-[10px]">Account</span></a>
