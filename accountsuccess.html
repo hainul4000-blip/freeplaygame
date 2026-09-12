@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Freeplay - Success Account Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { obsidian: '#07080d', cyanGlow: '#00f3ff', goldVip: '#ffd700' } } } }
+    </script>
+    <style>
+        body { background-color: #07080d; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        .gaming-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: #07080d; overflow: hidden; }
+        .grid-overlay { position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 215, 0, 0.05) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 25s linear infinite; }
+        @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+        .glass-panel { background: rgba(5, 42, 51, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(0, 243, 255, 0.4); border-radius: 12px; }
+        .btn-gold { background: linear-gradient(135deg, #ffd700, #b8860b); color: #000; font-weight: bold; border: 1px solid #ffd700; box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+        .nav-center { background: linear-gradient(135deg, #00f3ff, #0088ff); box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); animation: pulseNav 2s infinite; }
+        @keyframes pulseNav { 0%, 100% { box-shadow: 0 0 15px rgba(0, 243, 255, 0.4); } 50% { box-shadow: 0 0 30px rgba(0, 243, 255, 0.8); } }
+    </style>
+</head>
+<body class="pb-24">
+    <div class="gaming-bg"><div class="grid-overlay"></div></div>
+
+    <header class="fixed top-0 w-full z-50 glass-panel !rounded-none border-t-0 border-x-0 px-4 py-3 flex justify-between items-center bg-obsidian/90">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyanGlow to-goldVip p-0.5 shadow-[0_0_12px_rgba(0,243,255,0.4)] flex items-center justify-center">
+                <div class="w-full h-full bg-obsidian rounded-[10px] flex items-center justify-center">
+                    <i class="fas fa-gamepad text-cyanGlow text-sm"></i>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-base font-black italic tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-cyanGlow to-goldVip">
+                    FREE<span class="text-goldVip">PLAY</span>
+                </span>
+            </div>
+        </div>
+        <h1 class="text-xs font-bold text-cyanGlow uppercase tracking-wider">Success Dashboard</h1>
+    </header>
+
+    <main class="pt-24 px-4 max-w-md mx-auto relative z-10">
+        <div class="glass-panel p-6 text-center shadow-lg relative overflow-hidden mb-6 border-cyanGlow/50">
+            <div class="w-20 h-20 mx-auto rounded-full bg-obsidian border-2 border-cyanGlow flex items-center justify-center text-3xl font-black text-cyanGlow mb-3 shadow-[0_0_15px_rgba(0,243,255,0.4)]">
+                <i class="fas fa-user-check"></i>
+            </div>
+            <h2 id="lbl-username" class="text-2xl font-bold text-white mb-1">User</h2>
+            <div class="bg-green-500/20 border border-green-500 text-green-400 px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1 shadow-[0_0_10px_rgba(34,197,94,0.3)] mb-2">
+                <i class="fas fa-check-circle"></i> VERIFIED SESSION
+            </div>
+            <p class="text-[11px] text-yellow-400 font-semibold">Generator Locked: Injection Successful</p>
+        </div>
+
+        <div class="glass-panel p-5 mb-6 border-l-4 border-goldVip">
+            <p class="text-xs text-gray-400 uppercase">Synchronized Balance</p>
+            <h3 id="lbl-balance" class="text-3xl font-black text-goldVip mb-4">$0.00</h3>
+            <a href="transactionsuccess.html" class="block w-full py-3 rounded btn-gold text-center text-sm uppercase font-bold">
+                TRANSFER CHIP KE ID GAME <i class="fas fa-paper-plane ml-1"></i>
+            </a>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 w-full z-50 glass-panel !rounded-none border-b-0 border-x-0 px-2 py-2 pb-4 bg-obsidian/95 backdrop-blur">
+        <div class="flex justify-between items-center max-w-md mx-auto relative">
+            <a href="success.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-home text-xl mb-1"></i><span class="text-[10px]">Home</span></a>
+            <a href="accountsuccess.html" class="flex flex-col items-center p-2 text-cyanGlow"><i class="fas fa-user text-xl mb-1"></i><span class="text-[10px]">Account</span></a>
+            <a href="transactionsuccess.html" class="relative -top-6 flex flex-col items-center group">
+                <div class="w-16 h-16 rounded-full nav-center p-1 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full rounded-full bg-obsidian flex items-center justify-center border-2 border-cyanGlow">
+                        <i class="fas fa-wallet text-cyanGlow text-xl"></i>
+                    </div>
+                </div>
+            </a>
+            <a href="chatsuccess.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-comment-dots text-xl mb-1"></i><span class="text-[10px]">Live Chat</span></a>
+            <a href="generatorsuccess.html" class="flex flex-col items-center p-2 text-gray-400 hover:text-white"><i class="fas fa-bolt text-xl mb-1"></i><span class="text-[10px]">Status</span></a>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('lbl-username').innerText = localStorage.getItem('username') || 'VIP User';
+            const bal = parseFloat(localStorage.getItem('balance')) || 0;
+            document.getElementById('lbl-balance').innerText = `$${bal.toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
