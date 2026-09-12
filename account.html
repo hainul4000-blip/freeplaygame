@@ -71,11 +71,6 @@
             if (isLoggedIn) {
                 const username = localStorage.getItem('username');
                 const bal = parseFloat(localStorage.getItem('balance')) || 0;
-                
-                const hasCompleted = localStorage.getItem('generatorCompleted') === 'true';
-                const tierBadge = hasCompleted 
-                    ? `<div class="bg-goldVip/20 border border-goldVip text-goldVip px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1 shadow-[0_0_10px_rgba(255,215,0,0.5)]"><i class="fas fa-crown"></i> VERIFIED VIP</div>`
-                    : `<div class="bg-gray-800 border border-gray-600 text-gray-400 px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1"><i class="fas fa-user"></i> STANDARD (Unverified)</div>`;
 
                 main.innerHTML = `
                     <div class="glass-panel p-6 text-center shadow-lg relative overflow-hidden mb-6">
@@ -83,13 +78,15 @@
                             <i class="fas fa-user-astronaut"></i>
                         </div>
                         <h2 class="text-2xl font-bold text-white mb-1">${username}</h2>
-                        ${tierBadge}
+                        <div class="bg-cyanGlow/20 border border-cyanGlow text-cyanGlow px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1 shadow-[0_0_10px_rgba(0,243,255,0.3)]">
+                            <i class="fas fa-shield-alt"></i> ACTIVE SESSION
+                        </div>
                     </div>
                     <div class="glass-panel p-5 mb-6 border-l-4 border-cyanGlow">
                         <p class="text-xs text-gray-400 uppercase">Available Funds</p>
                         <h3 class="text-3xl font-black text-cyanGlow">$${bal.toFixed(2)}</h3>
                         <a href="transaction.html" class="mt-4 block w-full py-2 rounded border border-cyanGlow/50 text-cyanGlow text-center text-sm font-bold hover:bg-cyanGlow/10 transition-colors">
-                            Withdraw Dashboard
+                            Wallet & Ledger
                         </a>
                     </div>
                     <button onclick="handleLogout()" class="w-full glass-panel p-4 flex items-center justify-center gap-2 text-red-400 hover:bg-red-500/10 border-red-500/30">
@@ -99,8 +96,8 @@
             } else {
                 main.innerHTML = `
                     <div class="text-center mb-6">
-                        <h2 class="text-2xl font-black text-cyanGlow">VIP Registration</h2>
-                        <p class="text-sm text-gray-400 mt-1">Register to authenticate your gaming terminal.</p>
+                        <h2 class="text-2xl font-black text-cyanGlow">Terminal Authentication</h2>
+                        <p class="text-sm text-gray-400 mt-1">Register to authenticate your session.</p>
                     </div>
                     <form id="regForm" onsubmit="handleRegister(event)" class="glass-panel p-6 space-y-4">
                         <div>
@@ -116,7 +113,7 @@
                             <input type="password" required class="w-full rounded p-3 text-sm text-white" placeholder="••••••••">
                         </div>
                         <button type="submit" class="w-full mt-2 py-3 rounded btn-gold text-lg">
-                            Authenticate Account <i class="fas fa-lock ml-1"></i>
+                            Authenticate Session <i class="fas fa-lock ml-1"></i>
                         </button>
                     </form>
                 `;
@@ -136,7 +133,6 @@
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('username');
             localStorage.removeItem('balance');
-            localStorage.removeItem('generatorCompleted');
             renderState();
         }
     </script>
